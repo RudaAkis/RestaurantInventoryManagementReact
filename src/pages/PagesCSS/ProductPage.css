@@ -1,0 +1,8 @@
+.productMainContainer {
+	min-height: 40em;
+	width: 80%;
+	margin: 5em auto;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
