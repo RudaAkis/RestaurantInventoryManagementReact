@@ -2,25 +2,37 @@ import "./Product.css";
 import ItemUpdateButton from "./ItemUpdateButton";
 import ItemDeleteButton from "./ItemDeleteButton";
 
-function Product() {
+function Product({ product }) {
 	return (
 		<>
 			<div className="productContainer">
-				<p className="itemParagraph">Name of product</p>
+				<p className="itemParagraph">{product.name}</p>
 
-				<p className="itemParagraph">quantity</p>
+				<p className="itemParagraph">
+					{product.quantity + product.unitOfMeasure}
+				</p>
 
-				<p className="itemParagraph"> price </p>
+				<p className="itemParagraph"> product</p>
 
-				<p className="itemParagraph">price/unit</p>
+				<p className="itemParagraph">
+					{product.price / product.quantity +
+						"/" +
+						product.unitOfMeasure}
+				</p>
 
-				<p className="itemParagraph">expiry date</p>
+				<p className="itemParagraph">
+					Expiring on:
+					<br />
+					{product.expiryDate}
+				</p>
 
-				<p className="itemParagraph">date added</p>
+				<p className="itemParagraph">
+					Added on: <br /> {product.dateAdded}
+				</p>
 
-				<p className="itemParagraph">Cetegory</p>
+				<p className="itemParagraph">{product.category}</p>
 
-				<p className="itemParagraph">Vendor name</p>
+				<p className="itemParagraph">{product.vendor}</p>
 
 				<ItemUpdateButton />
 				<ItemDeleteButton />
