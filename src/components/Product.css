@@ -1,11 +1,10 @@
 .productContainer {
-	/* background-color: blanchedalmond; */
 	width: 80%;
 	min-height: 4em;
 	margin: 0.5em auto;
 	display: flex;
 	flex-direction: row;
-	/* justify-content: space-evenly; */
+	justify-content: space-center;
 	border-radius: 0.2em;
 	outline: 0.2em solid #59382c;
 }
@@ -14,10 +13,16 @@
 }
 
 .itemParagraph {
-	margin-left: 2em;
-	margin-top: 1.3em;
+	width: 8em;
+	padding: 0;
+	margin-left: 1em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
 	font-weight: 600;
 	text-align: center;
+	display: flex;
+	justify-content: left;
+	overflow: inherit;
 }
 
 .productButton {
@@ -29,7 +34,6 @@
 	border: none;
 	cursor: pointer;
 	border-radius: 2em;
-	/* outline: 0.1em solid; */
 }
 
 .productButton:hover {
@@ -45,4 +49,33 @@
 .iconImage {
 	max-width: 100%;
 	max-height: 100%;
+}
+
+/* Paragrhap styles */
+#pName {
+	font-size: 1.2em;
+	padding: 0;
+	margin: 0;
+}
+
+.expiry-danger,
+.expiry-warning,
+.expiry-safe {
+	text-decoration: underline;
+	padding: 0.1em;
+}
+
+.expiry-danger {
+	border: 2px solid #bf343f;
+	box-shadow: 4px 4px #bf3440be;
+}
+
+.expiry-warning {
+	border: 2px solid #f26938;
+	box-shadow: 4px 4px #f26a38c9;
+}
+
+.expiry-safe {
+	border: 2px solid #99bf0f;
+	box-shadow: 4px 4px #99bf0fd5;
 }

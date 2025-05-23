@@ -21,30 +21,29 @@ function ProductPage() {
 			});
 	}, []);
 
+	const removeProductLocally = (deletedId) => {
+		setProducts((prev) => prev.filter((p) => p.productId !== deletedId));
+	};
+
+	const addProductLocally = (product) => {
+		setProducts((previousProducts) => [...previousProducts, product]);
+	};
+
 	return (
 		<>
 			<div className="productMainContainer">
 				<AddProductButton setShowModal={setShowModal} />
-				{/* <ProductForm /> */}
-				{/* <Product />
-				<Product />
-				<Product />
-				<Product />
-				<Product />
-				<Product />
-				<Product />
-				<Product />
-				<Product />
-				<Product />
-				<Product /> */}
 				{products.map((p) => (
-					<Product product={p} />
+					<Product product={p} onDelete={removeProductLocally} />
 				))}
 				{showModal && (
 					<Modal
 						onClose={() => setShowModal(false)}
-						formChild={
-							<ProductForm onClose={() => setShowModal(false)} />
+						child={
+							<ProductForm
+								onClose={() => setShowModal(false)}
+								onAdd={addProductLocally}
+							/>
 						}
 					/>
 				)}

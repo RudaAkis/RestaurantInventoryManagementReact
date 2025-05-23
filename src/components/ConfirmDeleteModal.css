@@ -1,0 +1,39 @@
+.confirmModal {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: center;
+	text-align: center;
+}
+
+.modalButtons,
+.title,
+.message {
+	width: 100%;
+}
+
+.confirmBtn,
+.cancelBtn {
+	width: 30%;
+	min-height: 3em;
+	font-size: 1.5em;
+	margin: 1em 2em;
+	border-radius: 2em;
+	cursor: pointer;
+}
+
+.confirmBtn:hover,
+.cancelBtn:hover {
+	width: 32%;
+	font-weight: 600;
+}
+
+.confirmBtn {
+	border: 0.2em solid #3f8c70;
+	background-color: #f0f0f2;
+}
+
+.cancelBtn {
+	border: 0.2em solid#8c2034;
+	background-color: #f0f0f2;
+}

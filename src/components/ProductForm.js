@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "./Form.css";
 
-function ProductForm({ onClose }) {
+function ProductForm({ onClose, onAdd }) {
 	const [units, setUnits] = useState([]);
 	const [categories, setCategories] = useState([]);
 	const [vendors, setVendors] = useState([]);
@@ -99,11 +100,11 @@ function ProductForm({ onClose }) {
 			price: Number(formData.price),
 			expiryDate: formData.expiryDate,
 		};
-		console.log(payload);
 		axios
 			.post("http://localhost:8080/api/inventory/products", payload)
-			.then(() => {
-				console.log("Product created!");
+			.then((response) => {
+				const createdProduct = response.data;
+				onAdd(createdProduct);
 				onClose();
 			})
 			.catch((error) => {
@@ -113,33 +114,33 @@ function ProductForm({ onClose }) {
 
 	return (
 		<>
-			<form id="productForm">
-				<label className="productLabel">Product name</label>
+			<form className="form">
+				<label className="formLabel">Product name</label>
 				<input
 					name="name"
 					value={formData.name}
 					onChange={handleChange}
-					className="productInput"
+					className="formInput"
 					type="text"
 					placeholder="Cheese..."
 				/>
 
-				<label className="productLabel">Quantity</label>
+				<label className="formLabel">Quantity</label>
 				<input
 					name="quantity"
 					value={formData.quantity}
 					onChange={handleChange}
-					className="productInput"
+					className="formInput"
 					type="number"
 					placeholder="2.4..."
 				/>
 
-				<label className="productLabel">Unit of measure</label>
+				<label className="formLabel">Unit of measure</label>
 				<select
 					name="unitOfMeasureId"
 					value={formData.unitOfMeasureId}
 					onChange={handleChange}
-					className="productInput"
+					className="formInput"
 				>
 					{units.map((unit) => (
 						<option key={unit.unitId} value={unit.unitId}>
@@ -148,21 +149,21 @@ function ProductForm({ onClose }) {
 					))}
 				</select>
 
-				<label className="productLabel">Expiration Date</label>
+				<label className="formLabel">Expiration Date</label>
 				<input
 					name="expiryDate"
 					value={formData.expiryDate}
 					onChange={handleChange}
-					className="productInput"
+					className="formInput"
 					type="datetime-local"
 				/>
 
-				<label className="productLabel">Category</label>
+				<label className="formLabel">Category</label>
 				<select
 					name="categoryId"
 					value={formData.categoryId}
 					onChange={handleChange}
-					className="productInput"
+					className="formInput"
 				>
 					{categories.map((category) => (
 						<option
@@ -174,12 +175,12 @@ function ProductForm({ onClose }) {
 					))}
 				</select>
 
-				<label className="productLabel">Vendor</label>
+				<label className="formLabel">Vendor</label>
 				<select
 					name="vendorId"
 					value={formData.vendorId}
 					onChange={handleChange}
-					className="productInput"
+					className="formInput"
 				>
 					{vendors.map((vendor) => (
 						<option key={vendor.vendorId} value={vendor.vendorId}>
@@ -188,15 +189,16 @@ function ProductForm({ onClose }) {
 					))}
 				</select>
 
-				<label className="productLabel">Price</label>
+				<label className="formLabel">Price</label>
 				<input
 					name="price"
 					value={formData.price}
 					onChange={handleChange}
+					className="formInput"
 					type="number"
 				/>
 
-				<button onClick={handleSubmit}>Submit</button>
+				<button className="submitBtn" onClick={handleSubmit}>Submit</button>
 			</form>
 		</>
 	);

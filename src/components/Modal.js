@@ -1,6 +1,6 @@
 import "./Modal.css";
 
-function Modal({ onClose, formChild }) {
+function Modal({ onClose, child }) {
 	//Prevents the modal from closing if the modalContainer is clicked
 	const stopPropagation = (e) => e.stopPropagation();
 
@@ -10,7 +10,7 @@ function Modal({ onClose, formChild }) {
 				<button className="modalCloseButton" onClick={onClose}>
 					✖
 				</button>
-				{formChild}
+				{child}
 			</div>
 		</div>
 	);

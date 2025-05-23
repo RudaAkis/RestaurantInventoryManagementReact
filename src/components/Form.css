@@ -1,0 +1,48 @@
+.form {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	min-height: 10em;
+	/* outline: 2px solid greenyellow; */
+	justify-content: center;
+}
+
+.formInput,
+.formLabel,
+.submitBtn {
+	width: 30%;
+	/* outline: 1px solid red; */
+	text-align: center;
+	font-size: 1.5em;
+	appearance: none; /* Standard */
+	border: none;
+	border-bottom: 0.3em solid #d99873;
+}
+
+.submitBtn {
+	width: 40%;
+	border: 0.2em solid #d99873;
+	margin: 2em;
+	cursor: pointer;
+	border-radius: 2em;
+	min-height: 2.5em;
+}
+
+.submitBtn:hover {
+	border: 0.2em solid #7ca69a;
+	font-weight: 600;
+	width: 42%;
+}
+.submitBtn:active {
+	border: 0.2em solid #3f8c70;
+	width: 44%;
+	min-height: 2.7em;
+}
+
+.formLabel {
+	margin-right: 4em;
+	padding-top: 1.5em;
+}
+
+.formInput {
+}
