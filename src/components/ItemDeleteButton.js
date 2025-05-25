@@ -3,7 +3,7 @@ import { useState } from "react";
 import ConfirmModal from "./ConfirmModal";
 import axios from "axios";
 
-function ItemDeleteButton({ idToDelete, onActionComplete }) {
+function ItemDeleteButton({ idToDelete, onActionComplete, url }) {
 	const [showModal, setShowModal] = useState(false);
 
 	const handleClick = () => {
@@ -13,9 +13,7 @@ function ItemDeleteButton({ idToDelete, onActionComplete }) {
 
 	const handleConfirm = async () => {
 		try {
-			await axios.delete(
-				"http://localhost:8080/api/inventory/products/" + idToDelete
-			);
+			await axios.delete(url + idToDelete);
 			console.log("Product deleted:", idToDelete);
 			//This is a bit stupid JavaScript fucntionality to basically mean that if the function with this name exists and is not null or undefined call it
 			//Could also be written as if (onActionComplete){ onActionComplete() }

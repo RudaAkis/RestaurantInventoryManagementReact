@@ -1,7 +1,7 @@
 import "./PagesCSS/ProductPage.css";
 import Product from "../components/Product";
 import ProductForm from "../components/ProductForm";
-import AddProductButton from "../components/AddProductButton";
+import AddButton from "../components/AddButton";
 import { useEffect, useState } from "react";
 import Modal from "../components/Modal";
 import { Link } from "react-router-dom";
@@ -41,29 +41,27 @@ function ProductPage() {
 	};
 
 	return (
-		<>
-			<div className="productMainContainer">
-				<AddProductButton setShowModal={setShowModal} />
-				{products.map((p) => (
-					<Product
-						product={p}
-						onDelete={removeProductLocally}
-						onUpdate={updateProductLocally}
-					/>
-				))}
-				{showModal && (
-					<Modal
-						onClose={() => setShowModal(false)}
-						child={
-							<ProductForm
-								onClose={() => setShowModal(false)}
-								onAdd={addProductLocally}
-							/>
-						}
-					/>
-				)}
-			</div>
-		</>
+		<div className="mainContainer">
+			<AddButton setShowModal={setShowModal} />
+			{products.map((p) => (
+				<Product
+					product={p}
+					onDelete={removeProductLocally}
+					onUpdate={updateProductLocally}
+				/>
+			))}
+			{showModal && (
+				<Modal
+					onClose={() => setShowModal(false)}
+					child={
+						<ProductForm
+							onClose={() => setShowModal(false)}
+							onAdd={addProductLocally}
+						/>
+					}
+				/>
+			)}
+		</div>
 	);
 }
 

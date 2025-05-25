@@ -68,6 +68,7 @@ function Product({ product, onDelete, onUpdate }) {
 				<ItemDeleteButton
 					idToDelete={product.productId}
 					onActionComplete={onDelete}
+					url={"http://localhost:8080/api/inventory/products/"}
 				/>
 			</div>
 		</>

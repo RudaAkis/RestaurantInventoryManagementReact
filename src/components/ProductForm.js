@@ -55,7 +55,6 @@ function ProductForm({ onClose, onAdd }) {
 			...prev, //Spread operator to reassign the same values to everything else in the form
 			[name]: value,
 		}));
-		console.log("Changed field:", name, "New value:", value);
 	};
 
 	//Preassign the categoryId as the first options since it seems react by default leaves it an empty string

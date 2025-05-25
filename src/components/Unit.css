@@ -1,0 +1,17 @@
+.unitItemContainer {
+	width: 70%;
+	margin: 0.1em auto;
+	border-radius: 2em;
+	border: 0.3em solid #59382c;
+	font-size: 1.2em;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	max-height: 4em;
+}
+
+.unitParagraph {
+	/* outline: 1px solid red; */
+	font-size: 2em;
+	margin: 0.1em 0.5em;
+}

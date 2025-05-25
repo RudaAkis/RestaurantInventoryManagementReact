@@ -1,14 +1,14 @@
-function AddProductButton({ setShowModal }) {
+function AddButton({ setShowModal }) {
 	return (
 		<>
 			<button
 				className="openModalButton"
 				onClick={() => setShowModal(true)}
 			>
-				+Add Product
+				+Add
 			</button>
 		</>
 	);
 }
 
-export default AddProductButton;
+export default AddButton;
