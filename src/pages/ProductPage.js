@@ -4,6 +4,7 @@ import ProductForm from "../components/ProductForm";
 import AddProductButton from "../components/AddProductButton";
 import { useEffect, useState } from "react";
 import Modal from "../components/Modal";
+import { Link } from "react-router-dom";
 import axios from "axios";
 function ProductPage() {
 	const [showModal, setShowModal] = useState(false);
@@ -29,12 +30,26 @@ function ProductPage() {
 		setProducts((previousProducts) => [...previousProducts, product]);
 	};
 
+	const updateProductLocally = (updatedProduct) => {
+		setProducts((previousProducts) =>
+			previousProducts.map((product) =>
+				product.productId === updatedProduct.productId
+					? updatedProduct
+					: product
+			)
+		);
+	};
+
 	return (
 		<>
 			<div className="productMainContainer">
 				<AddProductButton setShowModal={setShowModal} />
 				{products.map((p) => (
-					<Product product={p} onDelete={removeProductLocally} />
+					<Product
+						product={p}
+						onDelete={removeProductLocally}
+						onUpdate={updateProductLocally}
+					/>
 				))}
 				{showModal && (
 					<Modal

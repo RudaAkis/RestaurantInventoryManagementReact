@@ -3,21 +3,14 @@ import { useState } from "react";
 import ConfirmModal from "./ConfirmModal";
 import axios from "axios";
 import Modal from "./Modal";
-import ProductForm from "./ProductForm";
+import ProductUpdateForm from "./ProductUpdateForm";
 
-function ItemUpdateButton({ productToEdit }) {
-	const [showUpdateModal, setShowUpdateModal] = useState(false);
+function ItemUpdateButton({ productToEdit, onUpdate }) {
 	const [showProductModal, setShowProductModal] = useState(false);
 
 	const handleClick = () => {
-		setShowUpdateModal(true);
 		setShowProductModal(true);
 		console.log("Update button clicked");
-	};
-
-	const handleConfirm = () => {
-		setShowUpdateModal(false);
-		setShowProductModal(true);
 	};
 
 	return (
@@ -34,10 +27,10 @@ function ItemUpdateButton({ productToEdit }) {
 				<Modal
 					onClose={() => setShowProductModal(false)}
 					child={
-						<ProductForm
+						<ProductUpdateForm
+							productToUpdate={productToEdit}
 							onClose={() => setShowProductModal(false)}
-							productToEdit={productToEdit}
-							isEditingEnabled={true}
+							onUpdate={onUpdate}
 						/>
 					}
 				/>

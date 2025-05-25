@@ -3,7 +3,7 @@ import ItemUpdateButton from "./ItemUpdateButton";
 import ItemDeleteButton from "./ItemDeleteButton";
 import { differenceInCalendarDays } from "date-fns";
 
-function Product({ product, onDelete }) {
+function Product({ product, onDelete, onUpdate }) {
 	//The imported class is used instead of the default time in milliseconds for readability
 	const daysTillExpire = (expiryDate) => {
 		return differenceInCalendarDays(new Date(expiryDate), new Date());
@@ -60,7 +60,11 @@ function Product({ product, onDelete }) {
 				<div className="itemParagraph">
 					<p>{product.vendor}</p>
 				</div>
-				<ItemUpdateButton productToEdit={product} />
+				<ItemUpdateButton
+					productToEdit={product}
+					onComplete={onUpdate}
+					onUpdate={onUpdate}
+				/>
 				<ItemDeleteButton
 					idToDelete={product.productId}
 					onActionComplete={onDelete}

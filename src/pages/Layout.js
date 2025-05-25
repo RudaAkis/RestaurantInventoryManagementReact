@@ -20,6 +20,15 @@ const Layout = () => {
 					<li>
 						<Link to="/dishes">Dishes</Link>
 					</li>
+					<li>
+						<Link to="/units">Units</Link>
+					</li>
+					<li>
+						<Link to="/categories">Categories</Link>
+					</li>
+					<li>
+						<Link to="/vendors">Vendors</Link>
+					</li>
 				</ul>
 
 				<LoginRegisterButton />

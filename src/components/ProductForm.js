@@ -198,7 +198,9 @@ function ProductForm({ onClose, onAdd }) {
 					type="number"
 				/>
 
-				<button className="submitBtn" onClick={handleSubmit}>Submit</button>
+				<button className="submitBtn" onClick={handleSubmit}>
+					Submit
+				</button>
 			</form>
 		</>
 	);
