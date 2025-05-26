@@ -1,8 +1,8 @@
 import { Outlet, Link } from "react-router-dom";
 import "../App.css";
 import "./PagesCSS/Layout.css";
-import LoginRegisterButton from "../components/LoginRegisterButton";
-import "../components/LoginButton.css";
+import LoginRegisterButton from "../components/Login/LoginRegisterButton";
+import "../components/Login/LoginButton.css";
 
 const Layout = () => {
 	return (

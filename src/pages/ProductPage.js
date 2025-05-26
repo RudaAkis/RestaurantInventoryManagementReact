@@ -1,6 +1,6 @@
 import "./PagesCSS/ProductPage.css";
-import Product from "../components/Product";
-import ProductForm from "../components/ProductForm";
+import Product from "../components/Product/Product.js";
+import ProductForm from "../components/Product/ProductForm";
 import AddButton from "../components/AddButton";
 import { useEffect, useState } from "react";
 import Modal from "../components/Modal";

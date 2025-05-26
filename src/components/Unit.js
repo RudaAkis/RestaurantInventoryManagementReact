@@ -1,10 +1,16 @@
 import ItemDeleteButton from "./ItemDeleteButton";
+import ItemUpdateButton from "./ItemUpdateButton";
 import "./Unit.css";
-function Unit({ unit, onDelete }) {
+import UnitUpdateForm from "./UnitUpdateForm";
+function Unit({ unit, onDelete, onUpdate }) {
 	return (
-		//style={{ width: "15%" }}
 		<div className="unitItemContainer">
 			<p className="unitParagraph">{unit.name}</p>
+			<ItemUpdateButton
+				formChildCompoenent={
+					<UnitUpdateForm unitToUpdate={unit} onUpdate={onUpdate} />
+				}
+			/>
 			<ItemDeleteButton
 				idToDelete={unit.unitId}
 				url={"http://localhost:8080/api/inventory/units/"}

@@ -1,7 +1,7 @@
 .unitItemContainer {
 	width: 70%;
 	margin: 0.1em auto;
-	border-radius: 2em;
+	border-radius: 0.5em;
 	border: 0.3em solid #59382c;
 	font-size: 1.2em;
 	display: flex;
@@ -10,8 +10,15 @@
 	max-height: 4em;
 }
 
+.unitItemContainer:hover {
+	background-color: #3f8c70c0;
+}
+
 .unitParagraph {
 	/* outline: 1px solid red; */
 	font-size: 2em;
-	margin: 0.1em 0.5em;
+	width: 18em;
+	margin: 0.1em 0;
+	display: flex;
+	justify-content: left;
 }

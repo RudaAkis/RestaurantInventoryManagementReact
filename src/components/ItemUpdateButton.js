@@ -1,11 +1,10 @@
 import pencilIcon from "../images/pencil_1972600.png";
 import { useState } from "react";
-import ConfirmModal from "./ConfirmModal";
 import axios from "axios";
 import Modal from "./Modal";
-import ProductUpdateForm from "./ProductUpdateForm";
+import ProductUpdateForm from "./Product/ProductUpdateForm";
 
-function ItemUpdateButton({ productToEdit, onUpdate }) {
+function ItemUpdateButton({ formChildCompoenent }) {
 	const [showProductModal, setShowProductModal] = useState(false);
 
 	const handleClick = () => {
@@ -26,13 +25,7 @@ function ItemUpdateButton({ productToEdit, onUpdate }) {
 			{showProductModal && (
 				<Modal
 					onClose={() => setShowProductModal(false)}
-					child={
-						<ProductUpdateForm
-							productToUpdate={productToEdit}
-							onClose={() => setShowProductModal(false)}
-							onUpdate={onUpdate}
-						/>
-					}
+					child={formChildCompoenent}
 				/>
 			)}
 		</>

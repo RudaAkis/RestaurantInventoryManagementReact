@@ -1,7 +1,8 @@
 import "./Product.css";
-import ItemUpdateButton from "./ItemUpdateButton";
-import ItemDeleteButton from "./ItemDeleteButton";
+import ItemUpdateButton from "../ItemUpdateButton";
+import ItemDeleteButton from "../ItemDeleteButton";
 import { differenceInCalendarDays } from "date-fns";
+import ProductUpdateForm from "./ProductUpdateForm";
 
 function Product({ product, onDelete, onUpdate }) {
 	//The imported class is used instead of the default time in milliseconds for readability
@@ -61,9 +62,12 @@ function Product({ product, onDelete, onUpdate }) {
 					<p>{product.vendor}</p>
 				</div>
 				<ItemUpdateButton
-					productToEdit={product}
-					onComplete={onUpdate}
-					onUpdate={onUpdate}
+					formChildCompoenent={
+						<ProductUpdateForm
+							productToUpdate={product}
+							onUpdate={onUpdate}
+						/>
+					}
 				/>
 				<ItemDeleteButton
 					idToDelete={product.productId}

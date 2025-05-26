@@ -17,6 +17,13 @@ function UnitPage() {
 	const addUnitLocally = (unit) => {
 		setUnits((previousUnits) => [...previousUnits, unit]);
 	};
+	const updateUnitLocally = (updatedUnit) => {
+		setUnits((prev) =>
+			prev.map((unit) =>
+				unit.unitId === updatedUnit.unitId ? updatedUnit : unit
+			)
+		);
+	};
 
 	useEffect(() => {
 		axios
@@ -34,7 +41,11 @@ function UnitPage() {
 		<div className="mainContainer">
 			<AddButton setShowModal={setShowModal} />
 			{units.map((unit) => (
-				<Unit unit={unit} onDelete={removeUnitLocally} />
+				<Unit
+					unit={unit}
+					onDelete={removeUnitLocally}
+					onUpdate={updateUnitLocally}
+				/>
 			))}
 			{showModal && (
 				<Modal

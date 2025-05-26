@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function ProductUpdateForm({ productToUpdate, onClose, onUpdate }) {
+function ProductUpdateForm({ productToUpdate, onUpdate }) {
 	const [formData, setFormData] = useState({
 		name: "",
 		quantity: "",
@@ -47,7 +47,6 @@ function ProductUpdateForm({ productToUpdate, onClose, onUpdate }) {
 	}, []);
 
 	useEffect(() => {
-		console.log(productToUpdate);
 		if (productToUpdate !== null) {
 			setFormData((previousData) => ({
 				...previousData,
@@ -95,8 +94,6 @@ function ProductUpdateForm({ productToUpdate, onClose, onUpdate }) {
 			price: Number(formData.price),
 			expiryDate: formData.expiryDate,
 		};
-		console.log(payload);
-		console.log("onUpdate is:", onUpdate, typeof onUpdate);
 		axios
 			.put(
 				"http://localhost:8080/api/inventory/products/" +
@@ -106,7 +103,7 @@ function ProductUpdateForm({ productToUpdate, onClose, onUpdate }) {
 			.then((response) => {
 				const updatedProduct = response.data;
 				onUpdate(updatedProduct);
-				onClose();
+				alert("Update Succesful");
 			})
 			.catch((error) => {
 				console.error("Error creating product:", error);

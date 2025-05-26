@@ -1,4 +1,4 @@
-import "./Form.css";
+import "./Product/Form.css";
 import { useState } from "react";
 import axios from "axios";
 
