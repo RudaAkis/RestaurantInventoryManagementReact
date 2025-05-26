@@ -1,33 +1,33 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-function CategoryUpdateForm({ categoryToUpdate, onUpdate }) {
-	const [formCategory, setFormCategory] = useState("");
+function VendorUpdateForm({ vendorToUpdate, onUpdate }) {
+	const [formVendor, setFormVendor] = useState("");
 
 	useEffect(() => {
-		if (categoryToUpdate !== null) {
-			setFormCategory(categoryToUpdate.name);
+		if (vendorToUpdate !== null) {
+			setFormVendor(vendorToUpdate.name);
 		}
 	}, []);
 
 	const handleChange = (event) => {
-		setFormCategory(event.target.value);
+		setFormVendor(event.target.value);
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		const payload = { name: formCategory };
+		const payload = { name: formVendor };
 
 		axios
 			.put(
-				"http://localhost:8080/api/inventory/category/" +
-					categoryToUpdate.categoryId,
+				"http://localhost:8080/api/inventory/vendors/" +
+					vendorToUpdate.vendorId,
 				payload
 			)
 			.then((resposne) => {
-				const updatedCategory = resposne.data;
-				console.log(updatedCategory);
-				onUpdate(updatedCategory);
+				const updatedVendor = resposne.data;
+				console.log(updatedVendor);
+				onUpdate(updatedVendor);
 				alert("Category updated succesfully");
 			})
 			.catch((error) => {
@@ -41,11 +41,11 @@ function CategoryUpdateForm({ categoryToUpdate, onUpdate }) {
 				<label className="formLabel">Category</label>
 				<input
 					type="text"
-					name="category"
-					value={formCategory}
+					name="vendor"
+					value={formVendor}
 					onChange={handleChange}
 					className="formInput"
-					placeholder="Drink..."
+					placeholder="Company LLc..."
 				/>
 				<button className="submitBtn" onClick={handleSubmit}>
 					Update
@@ -55,4 +55,4 @@ function CategoryUpdateForm({ categoryToUpdate, onUpdate }) {
 	);
 }
 
-export default CategoryUpdateForm;
+export default VendorUpdateForm;

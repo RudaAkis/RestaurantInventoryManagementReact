@@ -1,22 +1,22 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-function CategoryForm({ onAdd, onClose }) {
-	const [formCategory, setFormCategory] = useState("");
+function VendorForm({ onAdd, onClose }) {
+	const [formVendor, setFormVendor] = useState("");
 
 	const handleChange = (event) => {
-		setFormCategory(event.target.value);
+		setFormVendor(event.target.value);
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		const payload = { name: formCategory };
+		const payload = { name: formVendor };
 
 		axios
-			.post("http://localhost:8080/api/inventory/category", payload)
+			.post("http://localhost:8080/api/inventory/vendors", payload)
 			.then((resposne) => {
-				const createdCategory = resposne.data;
-				console.log(createdCategory);
-				onAdd(createdCategory);
+				const createdVendor = resposne.data;
+				console.log(createdVendor);
+				onAdd(createdVendor);
 				onClose();
 			})
 			.catch((error) => {
@@ -27,21 +27,21 @@ function CategoryForm({ onAdd, onClose }) {
 	return (
 		<>
 			<form>
-				<label className="formLabel">Category</label>
+				<label className="formLabel">Vendor</label>
 				<input
 					type="text"
-					name="category"
-					value={formCategory}
+					name="vendor"
+					value={formVendor}
 					onChange={handleChange}
 					className="formInput"
-					placeholder="Drink..."
+					placeholder="Company LLC..."
 				/>
 				<button className="submitBtn" onClick={handleSubmit}>
-					Add unit
+					Add Vendor
 				</button>
 			</form>
 		</>
 	);
 }
 
-export default CategoryForm;
+export default VendorForm;
