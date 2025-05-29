@@ -2,37 +2,50 @@ import "./PagesCSS/ProductPage.css";
 import Product from "../components/Product/Product.js";
 import ProductForm from "../components/Product/ProductForm";
 import AddButton from "../components/AddButton";
-import { useEffect, useState } from "react";
 import Modal from "../components/Modal";
-import { Link } from "react-router-dom";
+import ProductSearchBar from "../components/Product/ProductSearchBar.js";
+import { useEffect, useState } from "react";
 import axios from "axios";
+
 function ProductPage() {
 	const [showModal, setShowModal] = useState(false);
-	const [products, setProducts] = useState([]);
+	const [products, setProducts] = useState([]); // Full list of all products
+	const [filteredProducts, setFilteredProducts] = useState([]); // Current selection of products after filtering will be done
 
 	useEffect(() => {
 		axios
 			.get("http://localhost:8080/api/inventory/products/all")
 			.then((response) => {
 				setProducts(response.data);
-				console.log(response.data);
+				setFilteredProducts(response.data); //Set both full list and filtered list as all products
 			})
 			.catch((error) => {
-				console.error("Failed to fetch the products " + error);
+				console.error("Failed to fetch the products: " + error);
 			});
 	}, []);
 
 	const removeProductLocally = (deletedId) => {
 		setProducts((prev) => prev.filter((p) => p.productId !== deletedId));
+		setFilteredProducts((prev) =>
+			prev.filter((p) => p.productId !== deletedId)
+		);
 	};
 
 	const addProductLocally = (product) => {
-		setProducts((previousProducts) => [...previousProducts, product]);
+		setProducts((prev) => [...prev, product]);
+		setFilteredProducts((prev) => [...prev, product]);
 	};
 
 	const updateProductLocally = (updatedProduct) => {
-		setProducts((previousProducts) =>
-			previousProducts.map((product) =>
+		setProducts((prev) =>
+			prev.map((product) =>
+				product.productId === updatedProduct.productId
+					? updatedProduct
+					: product
+			)
+		);
+		setFilteredProducts((prev) =>
+			prev.map((product) =>
 				product.productId === updatedProduct.productId
 					? updatedProduct
 					: product
@@ -43,13 +56,26 @@ function ProductPage() {
 	return (
 		<div className="mainContainer">
 			<AddButton setShowModal={setShowModal} />
-			{products.map((p) => (
-				<Product
-					product={p}
-					onDelete={removeProductLocally}
-					onUpdate={updateProductLocally}
-				/>
-			))}
+
+			<ProductSearchBar
+				products={products}//Passing the full list of all products
+				onFilter={setFilteredProducts}//When on filter is called set the filtered products that is displayed
+				placeholder="Search products..."
+			/>
+
+			{filteredProducts.length === 0 ? (
+				<p>No results found.</p>
+			) : (
+				filteredProducts.map((p) => (
+					<Product
+						key={p.productId}
+						product={p}
+						onDelete={removeProductLocally}
+						onUpdate={updateProductLocally}
+					/>
+				))
+			)}
+
 			{showModal && (
 				<Modal
 					onClose={() => setShowModal(false)}

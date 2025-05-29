@@ -1,21 +1,34 @@
 import "../pages/PagesCSS/DishPage.css";
-import Dish from "../components/Dish";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddButton from "../components/AddButton";
 import Modal from "../components/Modal";
-import DishForm from "../components/DishForm";
+import DishForm from "../components/Dish/DishForm";
+import Dish from "../components/Dish/Dish";
+import axios from "axios";
 
 function DishesPage() {
 	const [showModal, setShowModal] = useState(false);
+	const [dishes, setDishes] = useState([]);
+
+	useEffect(() => {
+		axios
+			.get("http://localhost:8080/api/inventory/dishes/all")
+			.then((response) => {
+				setDishes(response.data);
+				console.log(response.data);
+			})
+			.catch((error) => {
+				console.log("failed to fetch dishes " + error);
+			});
+	}, []);
 
 	return (
 		<>
 			<div className="dishMainContainer">
 				<AddButton setShowModal={setShowModal} />
-				<Dish />
-				<Dish />
-				<Dish />
-				<Dish />
+				{dishes.map((dish) => (
+					<Dish dish={dish} />
+				))}
 				{showModal && (
 					<Modal
 						onClose={() => setShowModal(false)}
