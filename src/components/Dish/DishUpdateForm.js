@@ -1,11 +1,4 @@
-// DishForm.js
-import { useState } from "react";
-import "./DishForm.css";
-import ProductDropdownSearch from "./ProductDropdownSearch";
-import ProductQuantityInput from "./ProductQuantityInput";
-import axios from "axios";
-
-function DishForm({ onClose, onAdd, products }) {
+function DishUpdateForm() {
 	const [formData, setFormData] = useState({
 		name: "",
 		selectedProducts: [], // List of products with ID & name
@@ -19,10 +12,6 @@ function DishForm({ onClose, onAdd, products }) {
 			quantities: { ...prev.quantities, [product.productId]: "" },
 		}));
 	};
-
-	const handleRemoveProduct = () => {
-		
-	}
 
 	const handleQuantityChange = (productId, value) => {
 		setFormData((prev) => ({
@@ -92,4 +81,4 @@ function DishForm({ onClose, onAdd, products }) {
 	);
 }
 
-export default DishForm;
+export default DishUpdateForm;

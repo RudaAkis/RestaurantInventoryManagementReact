@@ -1,0 +1,61 @@
+.dishFormContainer {
+	max-height: 40em;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 100%;
+	overflow-y: scroll;
+	/* background-color: aqua; */
+}
+
+.dishFormField {
+	width: 35%;
+}
+
+.productQuantityContainer {
+	width: 100%;
+	border-radius: 0.2em;
+	/* border-top: 0.2em solid #d99873; */
+	border-bottom: 0.2em solid #d99873;
+	padding: 0;
+	margin: 0.2em auto;
+	/* background-color: blueviolet; */
+}
+
+.formProductField,
+.dishFormField {
+	display: inline-block;
+	margin: 2em 1em;
+	font-size: 1.2em;
+	appearance: none;
+	border: none;
+	border-bottom: 0.2em solid #d99873;
+}
+
+.formProductField:nth-child(even) {
+	border-bottom: 0.2em solid #59382c;
+}
+
+.formProductField {
+	width: 20%;
+}
+.dishFormSubmitBtn {
+	width: 60%;
+}
+
+.dropdown-list {
+	width: 70%;
+	border: 0.2em solid #59382c;
+	flex-wrap: wrap;
+}
+
+.productListItem {
+	cursor: pointer;
+	margin: 2em;
+	padding: 1em;
+	border: 0.2em dashed #d99873;
+}
+
+.dropdown-search {
+	width: 70%;
+}

@@ -9,6 +9,7 @@ import axios from "axios";
 function DishesPage() {
 	const [showModal, setShowModal] = useState(false);
 	const [dishes, setDishes] = useState([]);
+	const [products, setProducts] = useState([]);
 
 	useEffect(() => {
 		axios
@@ -22,17 +23,43 @@ function DishesPage() {
 			});
 	}, []);
 
+	useEffect(() => {
+		axios
+			.get("http://localhost:8080/api/inventory/products/all")
+			.then((response) => {
+				setProducts(response.data);
+				console.log(response.data);
+			})
+			.catch((error) => {
+				console.error("failed to fetch products " + error);
+			});
+	}, []);
+
+	const addDishLocally = (dishToAdd) => {
+		setDishes((previous) => [...previous, dishToAdd]);
+	};
+
+	const removeDishLocally = (idToDelete) => {
+		setDishes( (previous) => previous.filter((dish) => dish.dishId !== idToDelete) )		
+	}
+
 	return (
 		<>
 			<div className="dishMainContainer">
 				<AddButton setShowModal={setShowModal} />
 				{dishes.map((dish) => (
-					<Dish dish={dish} />
+					<Dish dish={dish} onDelete={removeDishLocally} />
 				))}
 				{showModal && (
 					<Modal
 						onClose={() => setShowModal(false)}
-						formChild={<DishForm />}
+						child={
+							<DishForm
+								products={products}
+								onClose={() => setShowModal(false)}
+								onAdd={addDishLocally}
+							/>
+						}
 					/>
 				)}
 			</div>

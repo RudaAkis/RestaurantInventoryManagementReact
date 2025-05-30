@@ -31,7 +31,7 @@ const Layout = () => {
 					</li>
 				</ul>
 
-				<LoginRegisterButton />
+				{/* <LoginRegisterButton /> */}
 			</nav>
 
 			<Outlet />
