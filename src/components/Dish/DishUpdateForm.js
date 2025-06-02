@@ -1,9 +1,34 @@
-function DishUpdateForm() {
+import { useState, useEffect } from "react";
+import axios from "axios";
+import ProductDropdownSearch from "./ProductDropdownSearch";
+import ProductQuantityInput from "./ProductQuantityInput";
+
+function DishUpdateForm({ dish, onUpdate, products }) {
 	const [formData, setFormData] = useState({
 		name: "",
 		selectedProducts: [], // List of products with ID & name
 		quantities: {}, // Map: productId -> quantity
 	});
+
+	useEffect(() => {
+		if (dish) {
+			const quantitiesMap = {};
+			const selected = dish.ingredients.map((p) => {
+				quantitiesMap[p.productId] = p.quantity.toString();
+				return {
+					productId: p.productId,
+					name: p.productName,
+					unitOfMeasure: p.unit,
+				};
+			});
+
+			setFormData({
+				name: dish.name,
+				selectedProducts: selected,
+				quantities: quantitiesMap,
+			});
+		}
+	}, [dish]);
 
 	const handleAddProduct = (product) => {
 		setFormData((prev) => ({
@@ -11,6 +36,23 @@ function DishUpdateForm() {
 			selectedProducts: [...prev.selectedProducts, product],
 			quantities: { ...prev.quantities, [product.productId]: "" },
 		}));
+	};
+
+	const handleRemoveProduct = (productToRemoveId) => {
+		setFormData((prev) => {
+			const updatedSelectedProducts = prev.selectedProducts.filter(
+				(p) => p.productId !== productToRemoveId
+			);
+
+			const updatedQuantities = { ...prev.quantities };
+			delete updatedQuantities[productToRemoveId];
+
+			return {
+				...prev,
+				selectedProducts: updatedSelectedProducts,
+				quantities: updatedQuantities,
+			};
+		});
 	};
 
 	const handleQuantityChange = (productId, value) => {
@@ -33,16 +75,19 @@ function DishUpdateForm() {
 		console.log(dishData);
 
 		axios
-			.post("http://localhost:8080/api/inventory/dishes", dishData)
+			.put(
+				"http://localhost:8080/api/inventory/dishes/" + dish.dishId,
+				dishData
+			)
 			.then((response) => {
 				const createdDish = response.data;
 				console.log(response.data);
-				onAdd(createdDish);
+				onUpdate(createdDish);
+				alert("The Dish was updated succesfully");
 			})
 			.catch((error) => {
 				console.error("failed to create the dish " + error);
 			});
-		onClose();
 	};
 
 	return (
@@ -71,6 +116,7 @@ function DishUpdateForm() {
 					product={product}
 					quantity={formData.quantities[product.productId]}
 					onQuantityChange={handleQuantityChange}
+					handleRemoveProduct={handleRemoveProduct}
 				/>
 			))}
 

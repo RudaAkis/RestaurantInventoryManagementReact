@@ -40,15 +40,24 @@ function DishesPage() {
 	};
 
 	const removeDishLocally = (idToDelete) => {
-		setDishes( (previous) => previous.filter((dish) => dish.dishId !== idToDelete) )		
-	}
+		setDishes((previous) =>
+			previous.filter((dish) => dish.dishId !== idToDelete)
+		);
+	};
+
+	const updateDishLocally = () => {};
 
 	return (
 		<>
 			<div className="dishMainContainer">
 				<AddButton setShowModal={setShowModal} />
 				{dishes.map((dish) => (
-					<Dish dish={dish} onDelete={removeDishLocally} />
+					<Dish
+						dish={dish}
+						onDelete={removeDishLocally}
+						onUpdate={updateDishLocally}
+						products={products}
+					/>
 				))}
 				{showModal && (
 					<Modal

@@ -20,9 +20,22 @@ function DishForm({ onClose, onAdd, products }) {
 		}));
 	};
 
-	const handleRemoveProduct = () => {
-		
-	}
+	const handleRemoveProduct = (productToRemoveId) => {
+		setFormData((prev) => {
+			const updatedSelectedProducts = prev.selectedProducts.filter(
+				(p) => p.productId !== productToRemoveId
+			);
+
+			const updatedQuantities = { ...prev.quantities };
+			delete updatedQuantities[productToRemoveId];
+
+			return {
+				...prev,
+				selectedProducts: updatedSelectedProducts,
+				quantities: updatedQuantities,
+			};
+		});
+	};
 
 	const handleQuantityChange = (productId, value) => {
 		setFormData((prev) => ({
@@ -82,6 +95,7 @@ function DishForm({ onClose, onAdd, products }) {
 					product={product}
 					quantity={formData.quantities[product.productId]}
 					onQuantityChange={handleQuantityChange}
+					handleRemoveProduct={handleRemoveProduct}
 				/>
 			))}
 

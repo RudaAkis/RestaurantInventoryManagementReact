@@ -3,8 +3,9 @@ import ItemDeleteButton from "../ItemDeleteButton";
 import "./Dish.css";
 import { useState } from "react";
 import MakeDishButton from "./MakeDishButton";
+import DishUpdateForm from "./DishUpdateForm";
 
-function Dish({ dish, onDelete }) {
+function Dish({ dish, onDelete, onUpdate, products }) {
 	const [showDishProducts, setShowDishProducts] = useState(false);
 	const [seeProductsText, setSeeProductsText] = useState("See Products");
 
@@ -29,7 +30,15 @@ function Dish({ dish, onDelete }) {
 				{seeProductsText}
 			</button>
 			<MakeDishButton handleMakeDish={handleMakeDish} />
-			<ItemUpdateButton />
+			<ItemUpdateButton
+				formChildCompoenent={
+					<DishUpdateForm
+						dish={dish}
+						onUpdate={onUpdate}
+						products={products}
+					/>
+				}
+			/>
 			<ItemDeleteButton
 				idToDelete={dish.dishId}
 				onActionComplete={onDelete}
