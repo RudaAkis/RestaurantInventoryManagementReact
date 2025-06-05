@@ -12,22 +12,22 @@ const Layout = () => {
 
 				<ul>
 					<li>
-						<Link to="/dashboard">Dashboard</Link>
+						<Link to="/app/dashboard">Dashboard</Link>
 					</li>
 					<li>
-						<Link to="/products">Products</Link>
+						<Link to="/app/products">Products</Link>
 					</li>
 					<li>
-						<Link to="/dishes">Dishes</Link>
+						<Link to="/app/dishes">Dishes</Link>
 					</li>
 					<li>
-						<Link to="/units">Units</Link>
+						<Link to="/app/units">Units</Link>
 					</li>
 					<li>
-						<Link to="/categories">Categories</Link>
+						<Link to="/app/categories">Categories</Link>
 					</li>
 					<li>
-						<Link to="/vendors">Vendors</Link>
+						<Link to="/app/vendors">Vendors</Link>
 					</li>
 				</ul>
 

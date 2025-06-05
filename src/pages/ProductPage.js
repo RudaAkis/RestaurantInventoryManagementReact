@@ -5,7 +5,7 @@ import AddButton from "../components/AddButton";
 import Modal from "../components/Modal";
 import ProductSearchBar from "../components/Product/ProductSearchBar.js";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import AxiosInstance from "../api/AxiosInstance.js";
 
 function ProductPage() {
 	const [showModal, setShowModal] = useState(false);
@@ -13,8 +13,7 @@ function ProductPage() {
 	const [filteredProducts, setFilteredProducts] = useState([]); // Current selection of products after filtering will be done
 
 	useEffect(() => {
-		axios
-			.get("http://localhost:8080/api/inventory/products/all")
+		AxiosInstance.get("http://localhost:8080/api/inventory/products/all")
 			.then((response) => {
 				setProducts(response.data);
 				setFilteredProducts(response.data); //Set both full list and filtered list as all products
@@ -58,8 +57,8 @@ function ProductPage() {
 			<AddButton setShowModal={setShowModal} />
 
 			<ProductSearchBar
-				products={products}//Passing the full list of all products
-				onFilter={setFilteredProducts}//When on filter is called set the filtered products that is displayed
+				products={products} //Passing the full list of all products
+				onFilter={setFilteredProducts} //When on filter is called set the filtered products that is displayed
 				placeholder="Search products..."
 			/>
 
