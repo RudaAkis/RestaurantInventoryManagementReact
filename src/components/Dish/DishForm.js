@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./DishForm.css";
 import ProductDropdownSearch from "./ProductDropdownSearch";
 import ProductQuantityInput from "./ProductQuantityInput";
-import axios from "axios";
+import axiosInstance from "../../api/AxiosInstance";
 
 function DishForm({ onClose, onAdd, products }) {
 	const [formData, setFormData] = useState({
@@ -56,7 +56,7 @@ function DishForm({ onClose, onAdd, products }) {
 
 		console.log(dishData);
 
-		axios
+		axiosInstance
 			.post("http://localhost:8080/api/inventory/dishes", dishData)
 			.then((response) => {
 				const createdDish = response.data;

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "../api/AxiosInstance";
 import AddButton from "../components/AddButton";
 import { useState, useEffect } from "react";
 import Modal from "../components/Modal";
@@ -31,7 +31,7 @@ function VendorPage() {
 	};
 
 	useEffect(() => {
-		axios
+		axiosInstance
 			.get("http://localhost:8080/api/inventory/vendors/all")
 			.then((response) => {
 				setVendors(response.data);

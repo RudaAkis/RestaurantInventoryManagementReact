@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "../../api/AxiosInstance";
 import { useState, useEffect } from "react";
 function VendorForm({ onAdd, onClose }) {
 	const [formVendor, setFormVendor] = useState("");
@@ -11,7 +11,7 @@ function VendorForm({ onAdd, onClose }) {
 
 		const payload = { name: formVendor };
 
-		axios
+		axiosInstance
 			.post("http://localhost:8080/api/inventory/vendors", payload)
 			.then((resposne) => {
 				const createdVendor = resposne.data;

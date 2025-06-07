@@ -59,3 +59,9 @@
 .dropdown-search {
 	width: 70%;
 }
+
+.removeBtn {
+	width: 15%;
+	font-size: 1.2em;
+	margin-left: 0.4em;
+}

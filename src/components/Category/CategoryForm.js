@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "../../api/AxiosInstance";
 import { useState, useEffect } from "react";
 function CategoryForm({ onAdd, onClose }) {
 	const [formCategory, setFormCategory] = useState("");
@@ -11,7 +11,7 @@ function CategoryForm({ onAdd, onClose }) {
 
 		const payload = { name: formCategory };
 
-		axios
+		axiosInstance
 			.post("http://localhost:8080/api/inventory/category", payload)
 			.then((resposne) => {
 				const createdCategory = resposne.data;

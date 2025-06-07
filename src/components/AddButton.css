@@ -1,0 +1,20 @@
+.addButton {
+	width: 70.5%;
+	min-height: 5em;
+	border: none;
+	border-radius: 0.3em;
+	background-color: aliceblue;
+	outline: 0.2em solid #3f8c70;
+	margin: 3em auto;
+	cursor: pointer;
+}
+
+.addButton:hover {
+	background-color: rgb(220, 229, 236);
+	outline: 0.3em solid #388569;
+}
+
+.addButton:active {
+	background-color: rgb(236, 241, 245);
+	outline: 0.4em solid #358b6c;
+}

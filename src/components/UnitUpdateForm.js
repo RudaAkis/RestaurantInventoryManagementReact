@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axiosInstance from "../api/AxiosInstance";
 
 function UnitUpdateForm({ unitToUpdate, onUpdate }) {
 	const [formUnit, setFormUnit] = useState();
@@ -17,7 +17,7 @@ function UnitUpdateForm({ unitToUpdate, onUpdate }) {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const payload = { name: formUnit };
-		axios
+		axiosInstance
 			.put(
 				"http://localhost:8080/api/inventory/units/" +
 					unitToUpdate.unitId,

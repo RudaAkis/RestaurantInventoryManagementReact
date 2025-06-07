@@ -7,6 +7,7 @@ import ProductSearchBar from "../components/Product/ProductSearchBar.js";
 import { useEffect, useState } from "react";
 import AxiosInstance from "../api/AxiosInstance.js";
 
+
 function ProductPage() {
 	const [showModal, setShowModal] = useState(false);
 	const [products, setProducts] = useState([]); // Full list of all products

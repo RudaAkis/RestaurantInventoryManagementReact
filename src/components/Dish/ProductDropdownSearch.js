@@ -1,4 +1,3 @@
-// ProductDropdownSearch.js
 import { useState } from "react";
 import "./DishForm.css";
 

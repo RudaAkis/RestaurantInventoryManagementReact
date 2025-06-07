@@ -1,0 +1,71 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	/* background-color: aliceblue; */
+}
+
+.loginForm {
+	margin: 7em auto;
+	width: 30%;
+	min-height: 40em;
+	border-radius: 3em;
+	border: 0.1em solid #d99873;
+	background-color: #f7f5f4;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	line-height: 1;
+}
+
+.loginFormItem {
+	width: 70%;
+	margin: 1em auto;
+	text-align: center;
+	font-size: 2em;
+	max-height: 2em;
+	margin: 0em;
+	border: none;
+	border-radius: 0.4em;
+}
+
+.loginInputField {
+	background-color: #e2dbd6;
+	outline: 0.01em solid black;
+}
+
+.loginPageButton {
+	background-color: #ebe4df;
+	border: 0.1em solid #3f8c70;
+	border-radius: 0.2em;
+	cursor: pointer;
+	width: 50%;
+	font-size: 2em;
+	max-height: 2em;
+}
+
+.loginPageButton:hover {
+	width: 51%;
+	border: 0.15em solid #39886bc2;
+	max-height: 1.9em;
+}
+
+.loginPageButton:active {
+	width: 52%;
+	border: 0.1em solid #39886bbd;
+	max-height: 2em;
+}
+
+.loginFormItemWrapper {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	max-height: 10em;
+	background-color: #f7f5f4;
+}
+
+.loginFormItemWrapper:nth-child(odd) {
+	margin-top: 3em;
+}

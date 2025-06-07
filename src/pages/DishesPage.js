@@ -4,7 +4,7 @@ import AddButton from "../components/AddButton";
 import Modal from "../components/Modal";
 import DishForm from "../components/Dish/DishForm";
 import Dish from "../components/Dish/Dish";
-import axios from "axios";
+import axiosInstance from "../api/AxiosInstance";
 
 function DishesPage() {
 	const [showModal, setShowModal] = useState(false);
@@ -12,7 +12,7 @@ function DishesPage() {
 	const [products, setProducts] = useState([]);
 
 	useEffect(() => {
-		axios
+		axiosInstance
 			.get("http://localhost:8080/api/inventory/dishes/all")
 			.then((response) => {
 				setDishes(response.data);
@@ -24,7 +24,7 @@ function DishesPage() {
 	}, []);
 
 	useEffect(() => {
-		axios
+		axiosInstance
 			.get("http://localhost:8080/api/inventory/products/all")
 			.then((response) => {
 				setProducts(response.data);

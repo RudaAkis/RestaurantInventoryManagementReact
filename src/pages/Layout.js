@@ -1,10 +1,23 @@
 import { Outlet, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "../App.css";
 import "./PagesCSS/Layout.css";
 import LoginRegisterButton from "../components/Login/LoginRegisterButton";
 import "../components/Login/LoginButton.css";
+import { getUserFromToken, logout } from "../utils/authUtils";
 
 const Layout = () => {
+	const [username, setUsername] = useState("");
+
+	useEffect(() => {
+		const user = getUserFromToken();
+		if (user) {
+			setUsername(user);
+		} else {
+			logout();
+		}
+	}, []);
+
 	return (
 		<>
 			<nav>
@@ -29,9 +42,12 @@ const Layout = () => {
 					<li>
 						<Link to="/app/vendors">Vendors</Link>
 					</li>
+					{username && (
+						<li className="usernameText">
+							| Welcome, {getUserFromToken()}
+						</li>
+					)}
 				</ul>
-
-				{/* <LoginRegisterButton /> */}
 			</nav>
 
 			<Outlet />

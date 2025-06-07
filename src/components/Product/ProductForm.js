@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import "./Form.css";
+import axiosInstance from "../../api/AxiosInstance";
 
 function ProductForm({ onClose, onAdd }) {
 	const [units, setUnits] = useState([]);
@@ -19,7 +19,7 @@ function ProductForm({ onClose, onAdd }) {
 	//UseEffect use to fetch the Units, Categories and Vendors from back end
 	useEffect(() => {
 		//Sets Units
-		axios
+		axiosInstance
 			.get("http://localhost:8080/api/inventory/units/all")
 			.then((response) => {
 				setUnits(response.data);
@@ -28,7 +28,7 @@ function ProductForm({ onClose, onAdd }) {
 				console.error("Failed to fetch unit " + error);
 			});
 		//Sets Categories
-		axios
+		axiosInstance
 			.get("http://localhost:8080/api/inventory/category/all")
 			.then((response) => {
 				setCategories(response.data);
@@ -37,7 +37,7 @@ function ProductForm({ onClose, onAdd }) {
 				console.error("Failed to fetch Categories " + error);
 			});
 		//Sets vendors
-		axios
+		axiosInstance
 			.get("http://localhost:8080/api/inventory/vendors/all")
 			.then((response) => {
 				setVendors(response.data);
@@ -99,7 +99,7 @@ function ProductForm({ onClose, onAdd }) {
 			price: Number(formData.price),
 			expiryDate: formData.expiryDate,
 		};
-		axios
+		axiosInstance
 			.post("http://localhost:8080/api/inventory/products", payload)
 			.then((response) => {
 				const createdProduct = response.data;

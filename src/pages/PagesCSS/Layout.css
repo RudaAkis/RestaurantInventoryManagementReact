@@ -47,3 +47,8 @@ h1 {
 	margin-left: 2em;
 	color: rgba(0, 0, 0, 0.945);
 }
+
+.usernameText {
+	font-size: 1.5em;
+	font-weight: 600;
+}

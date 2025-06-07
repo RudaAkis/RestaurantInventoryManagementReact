@@ -1,8 +1,10 @@
+import "./AddButton.css";
+
 function AddButton({ setShowModal }) {
 	return (
 		<>
 			<button
-				className="openModalButton"
+				className="addButton"
 				onClick={() => setShowModal(true)}
 			>
 				+Add

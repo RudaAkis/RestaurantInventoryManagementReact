@@ -1,7 +1,7 @@
 import trashIcon from "../images/trash-bin_8081578.png";
 import { useState } from "react";
 import ConfirmModal from "./ConfirmModal";
-import axios from "axios";
+import axiosInstance from "../api/AxiosInstance";
 
 function ItemDeleteButton({ idToDelete, onActionComplete, url }) {
 	const [showModal, setShowModal] = useState(false);
@@ -13,7 +13,7 @@ function ItemDeleteButton({ idToDelete, onActionComplete, url }) {
 
 	const handleConfirm = async () => {
 		try {
-			await axios.delete(url + idToDelete);
+			await axiosInstance.delete(url + idToDelete);
 			console.log("Product deleted:", idToDelete);
 			//This is a bit stupid JavaScript fucntionality to basically mean that if the function with this name exists and is not null or undefined call it
 			//Could also be written as if (onActionComplete){ onActionComplete() }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axiosInstance from "../../api/AxiosInstance";
 import ProductDropdownSearch from "./ProductDropdownSearch";
 import ProductQuantityInput from "./ProductQuantityInput";
 
@@ -10,6 +10,7 @@ function DishUpdateForm({ dish, onUpdate, products }) {
 		quantities: {}, // Map: productId -> quantity
 	});
 
+	//Fills the dish with previous data
 	useEffect(() => {
 		if (dish) {
 			const quantitiesMap = {};
@@ -74,7 +75,7 @@ function DishUpdateForm({ dish, onUpdate, products }) {
 
 		console.log(dishData);
 
-		axios
+		axiosInstance
 			.put(
 				"http://localhost:8080/api/inventory/dishes/" + dish.dishId,
 				dishData

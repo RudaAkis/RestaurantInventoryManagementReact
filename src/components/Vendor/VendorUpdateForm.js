@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "../../api/AxiosInstance";
 import { useState, useEffect } from "react";
 
 function VendorUpdateForm({ vendorToUpdate, onUpdate }) {
@@ -18,7 +18,7 @@ function VendorUpdateForm({ vendorToUpdate, onUpdate }) {
 
 		const payload = { name: formVendor };
 
-		axios
+		axiosInstance
 			.put(
 				"http://localhost:8080/api/inventory/vendors/" +
 					vendorToUpdate.vendorId,

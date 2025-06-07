@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "../../api/AxiosInstance";
 import { useState, useEffect } from "react";
 
 function CategoryUpdateForm({ categoryToUpdate, onUpdate }) {
@@ -18,7 +18,7 @@ function CategoryUpdateForm({ categoryToUpdate, onUpdate }) {
 
 		const payload = { name: formCategory };
 
-		axios
+		axiosInstance
 			.put(
 				"http://localhost:8080/api/inventory/category/" +
 					categoryToUpdate.categoryId,

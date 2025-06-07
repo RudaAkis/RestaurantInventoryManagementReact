@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../api/AxiosInstance";
+import "./PagesCSS/LoginPage.css";
 
 function LoginPage() {
 	const [username, setUsername] = useState("");
@@ -26,21 +27,33 @@ function LoginPage() {
 
 	return (
 		<form className="loginForm">
-			<label className="loginFormItem">Username</label>
-			<input
-				className="loginFormItem"
-				type="text"
-				value={username}
-				onChange={(e) => setUsername(e.target.value)}
-			/>
-			<label className="loginFormItem">Password </label>
-			<input
-				className="loginFormItem"
-				type="password"
-				value={password}
-				onChange={(e) => setPassword(e.target.value)}
-			/>
-			<button type="submit" onClick={handleSubmit}></button>
+			<div className="loginFormItemWrapper">
+				<label className="loginFormItem">Username</label>
+				<input
+					className="loginFormItem loginInputField"
+					type="text"
+					value={username}
+					onChange={(e) => setUsername(e.target.value)}
+				/>
+			</div>
+
+			<div className="loginFormItemWrapper">
+				<label className="loginFormItem">Password </label>
+				<input
+					className="loginFormItem loginInputField"
+					type="password"
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+				/>
+			</div>
+
+			<button
+				className="loginPageButton"
+				type="submit"
+				onClick={handleSubmit}
+			>
+				Login
+			</button>
 		</form>
 	);
 }

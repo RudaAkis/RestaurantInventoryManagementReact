@@ -1,6 +1,6 @@
 import "./Product/Form.css";
 import { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../api/AxiosInstance";
 
 function UnitForm({ onClose, onAdd }) {
 	const [formUnit, setFormUnit] = useState("");
@@ -13,7 +13,7 @@ function UnitForm({ onClose, onAdd }) {
 
 		const payload = { name: formUnit };
 
-		axios
+		axiosInstance
 			.post("http://localhost:8080/api/inventory/units", payload)
 			.then((resposne) => {
 				const createdUnit = resposne.data;

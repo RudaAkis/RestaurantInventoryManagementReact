@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import "../components/Unit.css";
 import Unit from "../components/Unit";
 import AddButton from "../components/AddButton";
 import Modal from "../components/Modal";
 import UnitForm from "../components/UnitForm";
+import axiosInstance from "../api/AxiosInstance";
 function UnitPage() {
 	const [units, setUnits] = useState([]);
 	const [showModal, setShowModal] = useState(false);
@@ -26,7 +26,7 @@ function UnitPage() {
 	};
 
 	useEffect(() => {
-		axios
+		axiosInstance
 			.get("http://localhost:8080/api/inventory/units/all")
 			.then((response) => {
 				setUnits(response.data);

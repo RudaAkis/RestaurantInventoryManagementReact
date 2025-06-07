@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "../api/AxiosInstance";
 import AddButton from "../components/AddButton";
 import { useState, useEffect } from "react";
 import Category from "../components/Category/Category";
@@ -31,7 +31,7 @@ function CategoryPage() {
 	};
 
 	useEffect(() => {
-		axios
+		axiosInstance
 			.get("http://localhost:8080/api/inventory/category/all")
 			.then((response) => {
 				setCategories(response.data);
