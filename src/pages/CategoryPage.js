@@ -6,10 +6,11 @@ import CategoryForm from "../components/Category/CategoryForm";
 import Modal from "../components/Modal";
 import "../components/Unit.css";
 import "./PagesCSS/ProductPage.css";
+import { getUserFromToken } from "../utils/authUtils";
 function CategoryPage() {
 	const [categories, setCategories] = useState([]);
 	const [showModal, setShowModal] = useState(false);
-
+	const user = getUserFromToken();
 	const removeCategoryLocally = (deletedId) => {
 		//Filter the list to keep only the Id's that dont match
 		setCategories((prev) =>
@@ -44,7 +45,10 @@ function CategoryPage() {
 
 	return (
 		<div className="mainContainer">
-			<AddButton setShowModal={setShowModal} />
+			{user?.role === "ADMIN" && (
+				<AddButton setShowModal={setShowModal} />
+			)}
+
 			{categories.map((cat) => (
 				<Category
 					category={cat}

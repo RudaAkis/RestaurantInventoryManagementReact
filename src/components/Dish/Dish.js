@@ -4,10 +4,12 @@ import "./Dish.css";
 import { useState } from "react";
 import MakeDishButton from "./MakeDishButton";
 import DishUpdateForm from "./DishUpdateForm";
+import { getUserFromToken } from "../../utils/authUtils";
 
 function Dish({ dish, onDelete, onUpdate, products }) {
 	const [showDishProducts, setShowDishProducts] = useState(false);
 	const [seeProductsText, setSeeProductsText] = useState("See Products");
+	const user = getUserFromToken();
 
 	const displayDishProducts = () => {
 		if (showDishProducts) {
@@ -30,20 +32,25 @@ function Dish({ dish, onDelete, onUpdate, products }) {
 				{seeProductsText}
 			</button>
 			<MakeDishButton handleMakeDish={handleMakeDish} />
-			<ItemUpdateButton
-				formChildCompoenent={
-					<DishUpdateForm
-						dish={dish}
-						onUpdate={onUpdate}
-						products={products}
-					/>
-				}
-			/>
-			<ItemDeleteButton
-				idToDelete={dish.dishId}
-				onActionComplete={onDelete}
-				url={"http://localhost:8080/api/inventory/dishes/"}
-			/>
+			{["ADMIN", "MANAGER"].includes(user?.role) && (
+				<ItemUpdateButton
+					formChildCompoenent={
+						<DishUpdateForm
+							dish={dish}
+							onUpdate={onUpdate}
+							products={products}
+						/>
+					}
+				/>
+			)}
+
+			{user?.role === "ADMIN" && (
+				<ItemDeleteButton
+					idToDelete={dish.dishId}
+					onActionComplete={onDelete}
+					url={"http://localhost:8080/api/inventory/dishes/"}
+				/>
+			)}
 			{showDishProducts && (
 				<>
 					<ul className="dishProductList">

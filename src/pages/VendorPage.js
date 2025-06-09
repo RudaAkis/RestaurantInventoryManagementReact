@@ -6,9 +6,11 @@ import "../components/Unit.css";
 import "./PagesCSS/ProductPage.css";
 import Vendor from "../components/Vendor/Vendor";
 import VendorForm from "../components/Vendor/VendorForm";
+import { getUserFromToken } from "../utils/authUtils";
 function VendorPage() {
 	const [vendors, setVendors] = useState([]);
 	const [showModal, setShowModal] = useState(false);
+	const user = getUserFromToken();
 
 	const removeCategoryLocally = (deletedId) => {
 		//Filter the list to keep only the Id's that dont match
@@ -44,7 +46,10 @@ function VendorPage() {
 
 	return (
 		<div className="mainContainer">
-			<AddButton setShowModal={setShowModal} />
+			{user?.role === "ADMIN" && (
+				<AddButton setShowModal={setShowModal} />
+			)}
+
 			{vendors.map((vendor) => (
 				<Vendor
 					vendor={vendor}

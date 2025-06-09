@@ -5,11 +5,13 @@ import Modal from "../components/Modal";
 import DishForm from "../components/Dish/DishForm";
 import Dish from "../components/Dish/Dish";
 import axiosInstance from "../api/AxiosInstance";
+import { getUserFromToken } from "../utils/authUtils";
 
 function DishesPage() {
 	const [showModal, setShowModal] = useState(false);
 	const [dishes, setDishes] = useState([]);
 	const [products, setProducts] = useState([]);
+	const user = getUserFromToken();
 
 	useEffect(() => {
 		axiosInstance
@@ -50,7 +52,9 @@ function DishesPage() {
 	return (
 		<>
 			<div className="dishMainContainer">
-				<AddButton setShowModal={setShowModal} />
+				{user?.role === "ADMIN" && (
+					<AddButton setShowModal={setShowModal} />
+				)}
 				{dishes.map((dish) => (
 					<Dish
 						dish={dish}

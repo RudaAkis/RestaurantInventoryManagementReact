@@ -6,12 +6,14 @@ import Modal from "../components/Modal";
 import ProductSearchBar from "../components/Product/ProductSearchBar.js";
 import { useEffect, useState } from "react";
 import AxiosInstance from "../api/AxiosInstance.js";
-
+import { getUserFromToken } from "../utils/authUtils.js";
 
 function ProductPage() {
 	const [showModal, setShowModal] = useState(false);
 	const [products, setProducts] = useState([]); // Full list of all products
 	const [filteredProducts, setFilteredProducts] = useState([]); // Current selection of products after filtering will be done
+
+	const user = getUserFromToken();
 
 	useEffect(() => {
 		AxiosInstance.get("http://localhost:8080/api/inventory/products/all")
@@ -55,7 +57,9 @@ function ProductPage() {
 
 	return (
 		<div className="mainContainer">
-			<AddButton setShowModal={setShowModal} />
+			{user?.role === "ADMIN" && (
+				<AddButton setShowModal={setShowModal} />
+			)}
 
 			<ProductSearchBar
 				products={products} //Passing the full list of all products

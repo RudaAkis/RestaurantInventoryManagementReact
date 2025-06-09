@@ -3,12 +3,15 @@ import ItemUpdateButton from "../ItemUpdateButton";
 import ItemDeleteButton from "../ItemDeleteButton";
 import { differenceInCalendarDays } from "date-fns";
 import ProductUpdateForm from "./ProductUpdateForm";
+import { getUserFromToken } from "../../utils/authUtils";
 
 function Product({ product, onDelete, onUpdate }) {
 	//The imported class is used instead of the default time in milliseconds for readability
 	const daysTillExpire = (expiryDate) => {
 		return differenceInCalendarDays(new Date(expiryDate), new Date());
 	};
+
+	const user = getUserFromToken();
 
 	const getExpiryClass = (expiryDate) => {
 		const daysLeft = daysTillExpire(expiryDate);
@@ -61,21 +64,28 @@ function Product({ product, onDelete, onUpdate }) {
 				<div className="itemParagraph">
 					<p>{product.vendor}</p>
 				</div>
-				<ItemUpdateButton
-					formChildCompoenent={
-						<ProductUpdateForm
-							productToUpdate={product}
-							onUpdate={onUpdate}
-						/>
-					}
-				/>
-				<ItemDeleteButton
-					idToDelete={product.productId}
-					onActionComplete={onDelete}
-					url={"http://localhost:8080/api/inventory/products/"}
-				/>
+
+				{["ADMIN", "MANAGER"].includes(user?.role) && (
+					<ItemUpdateButton
+						formChildCompoenent={
+							<ProductUpdateForm
+								productToUpdate={product}
+								onUpdate={onUpdate}
+							/>
+						}
+					/>
+				)}
+
+				{user?.role === "ADMIN" && (
+					<ItemDeleteButton
+						idToDelete={product.productId}
+						onActionComplete={onDelete}
+						url={"http://localhost:8080/api/inventory/products/"}
+					/>
+				)}
 			</div>
 		</>
 	);
 }
 export default Product;
+  

@@ -6,9 +6,15 @@ export const getUserFromToken = () => {
 
 	try {
 		const decoded = jwtDecode(token);
-		console.log(token);
-		console.log(decoded);
-		return decoded.sub;
+
+		//Return an object with all of the data from the user we decode from the jwt token
+		return {
+			username: decoded.sub,
+			firstname: decoded.firstname,
+			lastname: decoded.lastname,
+			role: decoded.role,
+			email: decoded.email,
+		};
 	} catch (error) {
 		console.error("Invalid JWT:", error);
 		return null;

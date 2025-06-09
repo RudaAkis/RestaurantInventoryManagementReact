@@ -12,7 +12,7 @@ const Layout = () => {
 	useEffect(() => {
 		const user = getUserFromToken();
 		if (user) {
-			setUsername(user);
+			setUsername(user?.username);
 		} else {
 			logout();
 		}
@@ -43,9 +43,7 @@ const Layout = () => {
 						<Link to="/app/vendors">Vendors</Link>
 					</li>
 					{username && (
-						<li className="usernameText">
-							| Welcome, {getUserFromToken()}
-						</li>
+						<li className="usernameText">| Welcome, {username}</li>
 					)}
 				</ul>
 			</nav>

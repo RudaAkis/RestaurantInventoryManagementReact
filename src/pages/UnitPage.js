@@ -5,9 +5,11 @@ import AddButton from "../components/AddButton";
 import Modal from "../components/Modal";
 import UnitForm from "../components/UnitForm";
 import axiosInstance from "../api/AxiosInstance";
+import { getUserFromToken } from "../utils/authUtils";
 function UnitPage() {
 	const [units, setUnits] = useState([]);
 	const [showModal, setShowModal] = useState(false);
+	const user = getUserFromToken();
 
 	const removeUnitLocally = (deletedId) => {
 		//Filter the list to keep only the Id's that dont match
@@ -39,7 +41,10 @@ function UnitPage() {
 
 	return (
 		<div className="mainContainer">
-			<AddButton setShowModal={setShowModal} />
+			{user?.role === "ADMIN" && (
+				<AddButton setShowModal={setShowModal} />
+			)}
+
 			{units.map((unit) => (
 				<Unit
 					unit={unit}
