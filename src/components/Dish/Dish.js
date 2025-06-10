@@ -5,6 +5,7 @@ import { useState } from "react";
 import MakeDishButton from "./MakeDishButton";
 import DishUpdateForm from "./DishUpdateForm";
 import { getUserFromToken } from "../../utils/authUtils";
+import axiosInstance from "../../api/AxiosInstance";
 
 function Dish({ dish, onDelete, onUpdate, products }) {
 	const [showDishProducts, setShowDishProducts] = useState(false);
@@ -22,7 +23,17 @@ function Dish({ dish, onDelete, onUpdate, products }) {
 	};
 
 	const handleMakeDish = () => {
-		alert("Dish prepared");
+		const count = 1;
+		axiosInstance
+			.post(
+				`http://localhost:8080/api/inventory/dishes/${dish.dishId}/make/${count}`
+			)
+			.then((response) => {
+				alert("Dish prepared");
+			})
+			.catch((error) => {
+				console.error("failed to make dish ", error);
+			});
 	};
 
 	return (

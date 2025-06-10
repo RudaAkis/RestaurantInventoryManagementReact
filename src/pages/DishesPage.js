@@ -41,13 +41,19 @@ function DishesPage() {
 		setDishes((previous) => [...previous, dishToAdd]);
 	};
 
+	const updateDishLocally = (updatedDish) => {
+		setDishes((prev) =>
+			prev.map((dish) =>
+				dish.dishId === updatedDish.dishId ? updatedDish : dish
+			)
+		);
+	};
+
 	const removeDishLocally = (idToDelete) => {
 		setDishes((previous) =>
 			previous.filter((dish) => dish.dishId !== idToDelete)
 		);
 	};
-
-	const updateDishLocally = () => {};
 
 	return (
 		<>

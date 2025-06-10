@@ -7,6 +7,7 @@ import ProductSearchBar from "../components/Product/ProductSearchBar.js";
 import { useEffect, useState } from "react";
 import AxiosInstance from "../api/AxiosInstance.js";
 import { getUserFromToken } from "../utils/authUtils.js";
+import ProductFilterBar from "../components/Product/PorductFilterBar.js";
 
 function ProductPage() {
 	const [showModal, setShowModal] = useState(false);
@@ -55,11 +56,34 @@ function ProductPage() {
 		);
 	};
 
+	const handleFilter = (params) => {
+		const queryString = new URLSearchParams(params).toString();
+
+		AxiosInstance.get(
+			`http://localhost:8080/api/inventory/products/filter?${queryString}`
+		)
+			.then((response) => {
+				setFilteredProducts(response.data);
+			})
+			.catch((error) => {
+				console.error("Failed to fetch filtered products: " + error);
+			});
+	};
+
+	const handleResetFilters = () => {
+		setFilteredProducts(products);
+	};
+
 	return (
 		<div className="mainContainer">
 			{user?.role === "ADMIN" && (
 				<AddButton setShowModal={setShowModal} />
 			)}
+
+			<ProductFilterBar
+				onFilter={handleFilter}
+				onReset={handleResetFilters}
+			/>
 
 			<ProductSearchBar
 				products={products} //Passing the full list of all products

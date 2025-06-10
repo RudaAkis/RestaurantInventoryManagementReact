@@ -28,7 +28,7 @@ function Product({ product, onDelete, onUpdate }) {
 				</div>
 
 				<div className="itemParagraph">
-					<p>{product.quantity + product.unitOfMeasure}</p>
+					<p>{product.quantity.toFixed(2) + product.unitOfMeasure}</p>
 				</div>
 
 				<div className="itemParagraph">
@@ -88,4 +88,3 @@ function Product({ product, onDelete, onUpdate }) {
 	);
 }
 export default Product;
-  
