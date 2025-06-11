@@ -29,13 +29,31 @@ function UserPage() {
 		setUsers((prev) => [...prev, newUser]);
 	};
 
+	const removeUserLocally = (deletedUserId) => {
+		setUsers((prev) =>
+			prev.filter((user) => user.userId !== deletedUserId)
+		);
+	};
+
+	const updateUserLocally = (updatedUser) => {
+		setUsers((prev) =>
+			prev.map((user) =>
+				user.userId === updatedUser.userId ? updatedUser : user
+			)
+		);
+	};
+
 	return (
 		<div className="mainContainer">
 			{user?.role === "ADMIN" && (
 				<>
 					<AddButton setShowModal={setShowModal} />
 					{users.map((user) => (
-						<UserItem userItem={user} />
+						<UserItem
+							userItem={user}
+							onDelete={removeUserLocally}
+							onUpdate={updateUserLocally}
+						/>
 					))}
 
 					{showModal && (

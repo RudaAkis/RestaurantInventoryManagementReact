@@ -20,7 +20,7 @@ function UserItem({ userItem, onUpdate, onDelete }) {
 					<ItemUpdateButton
 						formChildCompoenent={
 							<UserUpdateForm
-								unitToUpdate={userItem}
+								userToUpdate={userItem}
 								onUpdate={onUpdate}
 							/>
 						}
