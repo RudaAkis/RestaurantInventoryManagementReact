@@ -8,9 +8,8 @@ import { getUserFromToken, logout } from "../utils/authUtils";
 
 const Layout = () => {
 	const [username, setUsername] = useState("");
-
+	const user = getUserFromToken();
 	useEffect(() => {
-		const user = getUserFromToken();
 		if (user) {
 			setUsername(user?.username);
 		} else {
@@ -42,6 +41,11 @@ const Layout = () => {
 					<li>
 						<Link to="/app/vendors">Vendors</Link>
 					</li>
+					{user?.role === "ADMIN" && (
+						<li>
+							<Link to="/app/users">Users</Link>
+						</li>
+					)}
 					{username && (
 						<li className="usernameText">| Welcome, {username}</li>
 					)}

@@ -8,6 +8,7 @@ import UnitPage from "./pages/UnitPage";
 import CategoryPage from "./pages/CategoryPage";
 import VendorPage from "./pages/VendorPage";
 import LoginPage from "./pages/LoginPage";
+import UserPage from "./pages/UserPage";
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 					<Route path="units" element={<UnitPage />} />
 					<Route path="categories" element={<CategoryPage />} />
 					<Route path="vendors" element={<VendorPage />} />
+					<Route path="users" element={<UserPage />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
