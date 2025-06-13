@@ -15,6 +15,7 @@ function ProductForm({ onClose, onAdd }) {
 		vendorId: "",
 		price: "",
 	});
+	const [errors, setErrors] = useState({});
 
 	//UseEffect use to fetch the Units, Categories and Vendors from back end
 	useEffect(() => {
@@ -107,6 +108,10 @@ function ProductForm({ onClose, onAdd }) {
 				onClose();
 			})
 			.catch((error) => {
+				if (error.response && error.response.status === 400) {
+      				setErrors(error.response.data);//Create the object with key as the name of the field and the value as the error message
+					console.log("Printing out the errors response: ", error.response.data)
+    			}
 				console.error("Error creating product:", error);
 			});
 	};
@@ -123,6 +128,7 @@ function ProductForm({ onClose, onAdd }) {
 					type="text"
 					placeholder="Cheese..."
 				/>
+				{errors.name && <p className="errorMessage">{errors.name}</p>}
 
 				<label className="formLabel">Quantity</label>
 				<input
@@ -133,6 +139,7 @@ function ProductForm({ onClose, onAdd }) {
 					type="number"
 					placeholder="2.4..."
 				/>
+				{errors.quantity && <p className="errorMessage">{errors.quantity}</p>}
 
 				<label className="formLabel">Unit of measure</label>
 				<select
@@ -147,6 +154,7 @@ function ProductForm({ onClose, onAdd }) {
 						</option>
 					))}
 				</select>
+				{errors.unitOfMeasureId && <p className="errorMessage">{errors.unitOfMeasureId}</p>}
 
 				<label className="formLabel">Expiration Date</label>
 				<input
@@ -156,6 +164,7 @@ function ProductForm({ onClose, onAdd }) {
 					className="formInput"
 					type="datetime-local"
 				/>
+				{errors.expiryDate && <p className="errorMessage">{errors.expiryDate}</p>}
 
 				<label className="formLabel">Category</label>
 				<select
@@ -173,6 +182,7 @@ function ProductForm({ onClose, onAdd }) {
 						</option>
 					))}
 				</select>
+				{errors.categoryId && <p className="errorMessage">{errors.categoryId}</p>}
 
 				<label className="formLabel">Vendor</label>
 				<select
@@ -187,6 +197,7 @@ function ProductForm({ onClose, onAdd }) {
 						</option>
 					))}
 				</select>
+				{errors.vendorId && <p className="errorMessage">{errors.vendorId}</p>}
 
 				<label className="formLabel">Price</label>
 				<input
@@ -196,8 +207,9 @@ function ProductForm({ onClose, onAdd }) {
 					className="formInput"
 					type="number"
 				/>
+				{errors.price && <p className="errorMessage">{errors.price}</p>}
 
-				<button className="submitBtn" onClick={handleSubmit()}>
+				<button className="submitBtn" onClick={handleSubmit}>
 					Submit
 				</button>
 			</form>

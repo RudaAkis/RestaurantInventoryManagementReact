@@ -20,6 +20,10 @@ function Product({ product, onDelete, onUpdate }) {
 		return "expiry-safe";
 	};
 
+	const pricePerUnit = (product.price / product.quantity).toFixed(2) +
+							"/" +
+							product.unitOfMeasure
+
 	return (
 		<>
 			<div className="productContainer">
@@ -37,9 +41,7 @@ function Product({ product, onDelete, onUpdate }) {
 
 				<div className="itemParagraph">
 					<p>
-						{(product.price / product.quantity).toFixed(2) +
-							"/" +
-							product.unitOfMeasure}
+						{pricePerUnit}
 					</p>
 				</div>
 

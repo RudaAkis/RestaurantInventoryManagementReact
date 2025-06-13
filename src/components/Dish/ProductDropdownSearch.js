@@ -21,7 +21,7 @@ function ProductDropdownSearch({ items, selectedItems, onSelect }) {
 				onChange={(e) => setQuery(e.target.value)}
 			/>
 
-			{query && ( // If query is not not or empty show the list
+			{query && ( // If query is empty show the full list
 				<ul className="dropdown-list">
 					{filteredItems.length === 0 ? ( //If list of items mathcing the query is 0, show nothing is found
 						<li className="no-results">No results</li>

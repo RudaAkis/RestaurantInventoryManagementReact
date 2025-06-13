@@ -15,6 +15,7 @@ function ProductUpdateForm({ productToUpdate, onUpdate }) {
 	const [units, setUnits] = useState([]);
 	const [categories, setCategories] = useState([]);
 	const [vendors, setVendors] = useState([]);
+	const [errors, setErrors] = useState({});
 
 	//UseEffect use to fetch the Units, Categories and Vendors from back end
 	useEffect(() => {
@@ -107,6 +108,9 @@ function ProductUpdateForm({ productToUpdate, onUpdate }) {
 				alert("Update Succesful");
 			})
 			.catch((error) => {
+				if(error.response && error.response.status === 400){
+					setErrors(error.response.data)
+				}
 				console.error("Error creating product:", error);
 			});
 	};
@@ -122,6 +126,7 @@ function ProductUpdateForm({ productToUpdate, onUpdate }) {
 				type="text"
 				placeholder="Cheese..."
 			/>
+			{errors.name && <p className="errorMessage">{errors.name}</p>}
 
 			<label className="formLabel">Quantity</label>
 			<input
@@ -132,6 +137,7 @@ function ProductUpdateForm({ productToUpdate, onUpdate }) {
 				type="number"
 				placeholder="2.4..."
 			/>
+			{errors.quantity && <p className="errorMessage">{errors.quantity}</p>}
 
 			<label className="formLabel">Unit of measure</label>
 			<select
@@ -146,6 +152,7 @@ function ProductUpdateForm({ productToUpdate, onUpdate }) {
 					</option>
 				))}
 			</select>
+			{errors.unitOfMeasureId && <p className="errorMessage">{errors.unitOfMeasureId}</p>}
 
 			<label className="formLabel">Expiration Date</label>
 			<input
@@ -155,6 +162,7 @@ function ProductUpdateForm({ productToUpdate, onUpdate }) {
 				className="formInput"
 				type="datetime-local"
 			/>
+			{errors.expiryDate && <p className="errorMessage">{errors.expiryDate}</p>}
 
 			<label className="formLabel">Category</label>
 			<select
@@ -172,6 +180,7 @@ function ProductUpdateForm({ productToUpdate, onUpdate }) {
 					</option>
 				))}
 			</select>
+			{errors.categoryId && <p className="errorMessage">{errors.categoryId}</p>}
 
 			<label className="formLabel">Vendor</label>
 			<select
@@ -186,6 +195,7 @@ function ProductUpdateForm({ productToUpdate, onUpdate }) {
 					</option>
 				))}
 			</select>
+			{errors.vendorId && <p className="errorMessage">{errors.vendorId}</p>}
 
 			<label className="formLabel">Price</label>
 			<input
@@ -195,6 +205,7 @@ function ProductUpdateForm({ productToUpdate, onUpdate }) {
 				className="formInput"
 				type="number"
 			/>
+			{errors.price && <p className="errorMessage">{errors.price}</p>}
 
 			<button className="submitBtn" onClick={handleSubmit}>
 				Submit

@@ -33,6 +33,7 @@ function Dish({ dish, onDelete, onUpdate, products }) {
 			})
 			.catch((error) => {
 				console.error("failed to make dish ", error);
+				alert(error.response.data.message);
 			});
 	};
 

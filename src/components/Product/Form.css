@@ -46,3 +46,9 @@
 
 .formInput {
 }
+
+.errorMessage{
+	color: red;
+	width: 70%;
+	text-align: end;
+}
