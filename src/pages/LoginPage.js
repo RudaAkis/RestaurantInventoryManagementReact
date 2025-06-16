@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AxiosInstance from "../api/AxiosInstance";
 import "./PagesCSS/LoginPage.css";
@@ -7,6 +7,12 @@ function LoginPage() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const navigate = useNavigate();
+	const [errors, setErrors] = useState({});
+	const [noUserError, setNoUserError] = useState("");
+ 
+	useEffect(() => {
+		localStorage.removeItem('jwt');
+	}, []);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -21,7 +27,10 @@ function LoginPage() {
 				navigate("/app/dashboard");
 			})
 			.catch((error) => {
-				console.error("Failed to find the user " + error);
+				if(error.response && error.response.status === 400){
+					setErrors(error.response.data);
+				}
+				setNoUserError("User does not exist please check the username and password and try again");
 			});
 	};
 
@@ -36,6 +45,7 @@ function LoginPage() {
 					onChange={(e) => setUsername(e.target.value)}
 				/>
 			</div>
+			{errors.username && <p className="errorMessage">{errors.username}</p>}
 
 			<div className="loginFormItemWrapper">
 				<label className="loginFormItem">Password </label>
@@ -46,6 +56,7 @@ function LoginPage() {
 					onChange={(e) => setPassword(e.target.value)}
 				/>
 			</div>
+			{errors.password && <p className="errorMessage">{errors.password}</p>}
 
 			<button
 				className="loginPageButton"
@@ -54,6 +65,7 @@ function LoginPage() {
 			>
 				Login
 			</button>
+			{noUserError && <p className="errorMessage">{noUserError}</p>}
 		</form>
 	);
 }

@@ -10,6 +10,7 @@ function Product({ product, onDelete, onUpdate }) {
 	const daysTillExpire = (expiryDate) => {
 		return differenceInCalendarDays(new Date(expiryDate), new Date());
 	};
+	const isLowStock = product.quantity <= product.startQuantity - ((product.startQuantity / 4) * 3);//Checks if current quantity is at 25% of startQuantity
 
 	const user = getUserFromToken();
 
@@ -26,13 +27,17 @@ function Product({ product, onDelete, onUpdate }) {
 
 	return (
 		<>
-			<div className="productContainer">
+			<div className={`productContainer ${isLowStock ? 'lowStock' : ''}`}>
 				<div className="itemParagraph">
 					<p id="pName">{product.name}</p>
 				</div>
 
-				<div className="itemParagraph">
+				<div className={`itemParagraph ${isLowStock ? 'lowStock' : ''}`}>
 					<p>{product.quantity.toFixed(2) + product.unitOfMeasure}</p>
+				</div>
+
+				<div className="itemParagraph">
+					<p>{product.startQuantity + product.unitOfMeasure}</p>
 				</div>
 
 				<div className="itemParagraph">

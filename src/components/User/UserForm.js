@@ -11,6 +11,7 @@ function UserForm({ onClose, onAdd }) {
 		repeatPassword: "",
 		role: "",
 	});
+	const [errors, setErrors] = useState({});
 
 	const handleChange = (event) => {
 		//Assign the name and the value from the input to the variables
@@ -45,6 +46,10 @@ function UserForm({ onClose, onAdd }) {
 				onClose();
 			})
 			.catch((error) => {
+				if(error.response && error.response.status === 400){
+					setErrors(error.response.data);
+					console.log("The error is : ", error.response.data);
+				}
 				console.error("Error creating product:", error);
 			});
 	};
@@ -59,6 +64,8 @@ function UserForm({ onClose, onAdd }) {
 				type="text"
 				className="userFormInput"
 			/>
+			{errors.firstname && <p className="errorMessage">{errors.firstname}</p>}
+
 			<label className="userFormLabel">Lastname</label>
 			<input
 				name="lastname"
@@ -67,6 +74,8 @@ function UserForm({ onClose, onAdd }) {
 				type="text"
 				className="userFormInput"
 			/>
+			{errors.lastname && <p className="errorMessage">{errors.lastname}</p>}
+
 			<label className="userFormLabel">Username</label>
 			<input
 				name="username"
@@ -75,6 +84,8 @@ function UserForm({ onClose, onAdd }) {
 				type="text"
 				className="userFormInput"
 			/>
+			{errors.username && <p className="errorMessage">{errors.username}</p>}
+
 			<label className="userFormLabel">E-mail</label>
 			<input
 				name="email"
@@ -83,6 +94,8 @@ function UserForm({ onClose, onAdd }) {
 				type="text"
 				className="userFormInput"
 			/>
+			{errors.email && <p className="errorMessage">{errors.email}</p>}
+
 			<label className="userFormLabel">Password</label>
 			<input
 				name="firstPassword"
@@ -91,6 +104,8 @@ function UserForm({ onClose, onAdd }) {
 				type="password"
 				className="userFormInput"
 			/>
+			{errors.firstPassword && <p className="errorMessage">{errors.firstPassword}</p>}
+
 			<label className="userFormLabel">Repeat Password</label>
 			<input
 				name="repeatPassword"
@@ -99,10 +114,11 @@ function UserForm({ onClose, onAdd }) {
 				type="password"
 				className="userFormInput"
 			/>
+			{errors.repeatPassword && <p className="errorMessage">{errors.repeatPassword}</p>}
 
 			<select
 				name="role"
-				value={"role"}
+				value={userFormData.role}
 				onChange={handleChange}
 				className="userFormInput"
 			>

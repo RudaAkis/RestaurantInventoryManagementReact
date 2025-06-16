@@ -1,0 +1,8 @@
+.filterBar{
+    display: flex;
+    justify-content: center;
+}
+
+.filterOption{
+    margin: 0.1em 0.2em;
+}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axiosInstance from "../../api/AxiosInstance";
+import './ProductFilterBar.css';
 
 function ProductFilterBar({ onFilter, onReset }) {
 	const [categoryId, setCategoryId] = useState("");
@@ -47,6 +48,7 @@ function ProductFilterBar({ onFilter, onReset }) {
 	return (
 		<div className="filterBar">
 			<select
+				className="filterOption"
 				value={categoryId}
 				onChange={(e) => setCategoryId(e.target.value)}
 			>
@@ -62,6 +64,7 @@ function ProductFilterBar({ onFilter, onReset }) {
 			</select>
 
 			<select
+				className="filterOption"
 				value={vendorId}
 				onChange={(e) => setVendorId(e.target.value)}
 			>
@@ -74,25 +77,26 @@ function ProductFilterBar({ onFilter, onReset }) {
 			</select>
 
 			<input
+				className="filterOption"
 				type="number"
 				placeholder="Days Before Expiry"
 				value={daysBeforeExpiry}
 				onChange={(e) => setDaysBeforeExpiry(e.target.value)}
 			/>
 
-			<select value={sort} onChange={(e) => setSort(e.target.value)}>
+			<select className="filterOption" value={sort} onChange={(e) => setSort(e.target.value)}>
 				<option value="">No Sorting</option>
 				<option value="expiryDate">Expiry Date</option>
 				<option value="name">Name</option>
 			</select>
 
-			<select value={order} onChange={(e) => setOrder(e.target.value)}>
+			<select className="filterOption" value={order} onChange={(e) => setOrder(e.target.value)}>
 				<option value="asc">Ascending</option>
 				<option value="desc">Descending</option>
 			</select>
 
-			<button onClick={handleApplyFilter}>Apply Filters</button>
-			<button onClick={onReset}>Reset Filters</button>
+			<button className="filterOption, filterButton" onClick={handleApplyFilter}>Apply Filters</button>
+			<button className="filterOption, filterButton" onClick={onReset}>Reset Filters</button>
 		</div>
 	);
 }
