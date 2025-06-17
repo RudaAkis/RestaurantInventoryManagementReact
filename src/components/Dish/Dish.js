@@ -23,8 +23,7 @@ function Dish({ dish, onDelete, onUpdate, products }) {
 		}
 	};
 
-	const handleMakeDish = () => {
-		const count = 1;
+	const handleMakeDish = (count) => {
 		axiosInstance
 			.post(
 				`http://localhost:8080/api/inventory/dishes/${dish.dishId}/make/${count}`
@@ -46,7 +45,9 @@ function Dish({ dish, onDelete, onUpdate, products }) {
 				<button className="productButton" onClick={displayDishProducts}>
 					{seeProductsText}
 				</button>
-				<MakeDishButton handleMakeDish={handleMakeDish} />
+
+				<MakeDishButton handleMakeDish={handleMakeDish} errors={notEnoughProductError} setErrors={setNotEnoughProductError}/>
+
 				{["ADMIN", "MANAGER"].includes(user?.role) && (
 					<ItemUpdateButton
 						formChildCompoenent={
@@ -81,7 +82,6 @@ function Dish({ dish, onDelete, onUpdate, products }) {
 					</>
 				)}
 			</div>
-			{notEnoughProductError && <p className="errorMessage">{notEnoughProductError}</p>}
 		</>
 	);
 }

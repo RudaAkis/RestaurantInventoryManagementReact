@@ -4,6 +4,8 @@ import ItemDeleteButton from "../ItemDeleteButton";
 import { differenceInCalendarDays } from "date-fns";
 import ProductUpdateForm from "./ProductUpdateForm";
 import { getUserFromToken } from "../../utils/authUtils";
+import ProductRefillButton from "./ProductRefillButton";
+import axiosInstance from "../../api/AxiosInstance";
 
 function Product({ product, onDelete, onUpdate }) {
 	//The imported class is used instead of the default time in milliseconds for readability
@@ -22,8 +24,19 @@ function Product({ product, onDelete, onUpdate }) {
 	};
 
 	const pricePerUnit = (product.price / product.quantity).toFixed(2) +
-							"/" +
-							product.unitOfMeasure
+							"/" + product.unitOfMeasure;
+
+	const handleProductRefill = (refillAmount) => {
+		const payload = {refillQuantity: refillAmount};
+		axiosInstance.post(`http://localhost:8080/api/inventory/products/${product.productId}/refill`, payload)
+		.then((response) => {
+			const updatedProduct = response.data;
+			onUpdate(updatedProduct);
+		})
+		.catch((error) => {
+			console.log("Failed to refill product", error);
+		})
+	}
 
 	return (
 		<>
@@ -71,6 +84,12 @@ function Product({ product, onDelete, onUpdate }) {
 				<div className="itemParagraph">
 					<p>{product.vendor}</p>
 				</div>
+
+				{["ADMIN", "MANAGER"].includes(user?.role) && (
+					<ProductRefillButton 
+						refillProduct={handleProductRefill} 
+					/>
+				)}
 
 				{["ADMIN", "MANAGER"].includes(user?.role) && (
 					<ItemUpdateButton

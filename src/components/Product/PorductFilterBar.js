@@ -95,10 +95,11 @@ function ProductFilterBar({ onFilter, onReset }) {
 				<option value="desc">Descending</option>
 			</select>
 
-			<button className="filterOption, filterButton" onClick={handleApplyFilter}>Apply Filters</button>
+			<button className="filterOption, filterButton" onClick={handleApplyFilter}>Apply</button>
 			<button className="filterOption, filterButton" onClick={onReset}>Reset Filters</button>
 		</div>
 	);
 }
 
 export default ProductFilterBar;
+

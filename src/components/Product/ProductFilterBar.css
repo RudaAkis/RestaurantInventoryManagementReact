@@ -4,5 +4,13 @@
 }
 
 .filterOption{
-    margin: 0.1em 0.2em;
+    margin: 0.1em 0.4em;
+    width: 12%;
+    font-size: 1.2em;
+    min-height: 3em;
+}
+
+.filterButton{
+    width: 12%;
+    margin: 0 0.5em;
 }

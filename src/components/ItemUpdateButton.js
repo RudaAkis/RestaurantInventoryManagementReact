@@ -1,6 +1,5 @@
 import pencilIcon from "../images/pencil_1972600.png";
 import { useState } from "react";
-import axios from "axios";
 import Modal from "./Modal";
 import ProductUpdateForm from "./Product/ProductUpdateForm";
 
