@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function DishCountSelect({handleMakeDish, onClose, errors}) {
+function DishCountSelect({handleMakeDish, errors}) {
     const [count, setCount] = useState();
 
     const handleChange = (event) => {
@@ -14,7 +14,7 @@ function DishCountSelect({handleMakeDish, onClose, errors}) {
     }
 
     return (
-        <form className="dishCountSelectForm">
+        <form className="form">
             <label className="formLabel">Select the quantity of dishes to make</label>
             <input className="formInput" type="number" name="count" value={count} onChange={handleChange}/>
 

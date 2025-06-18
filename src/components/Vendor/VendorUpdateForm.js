@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 function VendorUpdateForm({ vendorToUpdate, onUpdate }) {
 	const [formVendor, setFormVendor] = useState("");
+	const [errors, setErrors] = useState({});
 
 	useEffect(() => {
 		if (vendorToUpdate !== null) {
@@ -24,13 +25,16 @@ function VendorUpdateForm({ vendorToUpdate, onUpdate }) {
 					vendorToUpdate.vendorId,
 				payload
 			)
-			.then((resposne) => {
-				const updatedVendor = resposne.data;
+			.then((response) => {
+				const updatedVendor = response.data;
 				console.log(updatedVendor);
 				onUpdate(updatedVendor);
 				alert("Category updated succesfully");
 			})
 			.catch((error) => {
+				if(error.response && error.response.status === 400){
+					setErrors(error.response.data);
+				}
 				console.error("failed to update a category " + error);
 			});
 	};
@@ -47,6 +51,7 @@ function VendorUpdateForm({ vendorToUpdate, onUpdate }) {
 					className="formInput"
 					placeholder="Company LLc..."
 				/>
+				{errors.name && <p className="errorMessage">{errors.name}</p>}
 				<button className="submitBtn" onClick={handleSubmit}>
 					Update
 				</button>

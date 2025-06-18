@@ -110,7 +110,6 @@ function ProductForm({ onClose, onAdd }) {
 			.catch((error) => {
 				if (error.response && error.response.status === 400) {
       				setErrors(error.response.data);//Create the object with key as the name of the field and the value as the error message
-					console.log("Printing out the errors response: ", error.response.data)
     			}
 				console.error("Error creating product:", error);
 			});

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 function CategoryUpdateForm({ categoryToUpdate, onUpdate }) {
 	const [formCategory, setFormCategory] = useState("");
+	const [errors, setErrors] = useState({});
 
 	useEffect(() => {
 		if (categoryToUpdate !== null) {
@@ -31,6 +32,9 @@ function CategoryUpdateForm({ categoryToUpdate, onUpdate }) {
 				alert("Category updated succesfully");
 			})
 			.catch((error) => {
+				if(error.response && error.response.status === 400){
+					setErrors(error.response.data);
+				}
 				console.error("failed to update a category " + error);
 			});
 	};
@@ -47,6 +51,8 @@ function CategoryUpdateForm({ categoryToUpdate, onUpdate }) {
 					className="formInput"
 					placeholder="Drink..."
 				/>
+				{errors.name && <p className="errorMessage">{errors.name}</p>}
+				
 				<button className="submitBtn" onClick={handleSubmit}>
 					Update
 				</button>

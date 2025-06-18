@@ -3,6 +3,7 @@ import axiosInstance from "../api/AxiosInstance";
 
 function UnitUpdateForm({ unitToUpdate, onUpdate }) {
 	const [formUnit, setFormUnit] = useState();
+	const [errors, setErrors] = useState({});
 
 	useEffect(() => {
 		if (unitToUpdate !== null) {
@@ -29,6 +30,9 @@ function UnitUpdateForm({ unitToUpdate, onUpdate }) {
 				alert("Unit of measure updated");
 			})
 			.catch((error) => {
+				if(error.response && error.response.status === 400 ){
+					setErrors(error.response.data);
+				}
 				console.error("failed to update unit of measure " + error);
 			});
 	};
@@ -44,6 +48,7 @@ function UnitUpdateForm({ unitToUpdate, onUpdate }) {
 				className="formInput"
 				placeholder="kg..."
 			/>
+			{errors.name && <p className="errorMessage">{errors.name}</p>}
 			<button className="submitBtn" onClick={handleSubmit}>
 				Update
 			</button>

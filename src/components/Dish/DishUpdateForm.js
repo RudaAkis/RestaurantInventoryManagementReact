@@ -10,6 +10,8 @@ function DishUpdateForm({ dish, onUpdate, products }) {
 		quantities: {}, // Map: productId -> quantity
 	});
 
+	const [errors, setErrors] = useState({});
+
 	//Fills the dish with previous data
 	useEffect(() => {
 		if (dish) {
@@ -85,9 +87,13 @@ function DishUpdateForm({ dish, onUpdate, products }) {
 				console.log(response.data);
 				onUpdate(createdDish);
 				alert("The Dish was updated succesfully");
+				setErrors({});
 			})
 			.catch((error) => {
 				console.error("failed to create the dish " + error);
+				if (error.response && error.response.status === 400) {
+					setErrors(error.response.data);
+				}
 			});
 	};
 
@@ -103,6 +109,7 @@ function DishUpdateForm({ dish, onUpdate, products }) {
 					setFormData({ ...formData, name: e.target.value })
 				}
 			/>
+			{errors.name && <p className="errorMessage">{errors.name}</p>}
 
 			<label className="dishFormField">Search and add products</label>
 			<ProductDropdownSearch

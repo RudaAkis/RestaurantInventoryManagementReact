@@ -46,7 +46,11 @@ function Dish({ dish, onDelete, onUpdate, products }) {
 					{seeProductsText}
 				</button>
 
-				<MakeDishButton handleMakeDish={handleMakeDish} errors={notEnoughProductError} setErrors={setNotEnoughProductError}/>
+				<MakeDishButton 
+					handleMakeDish={handleMakeDish} 
+					errors={notEnoughProductError} 
+					setErrors={setNotEnoughProductError}
+				/>
 
 				{["ADMIN", "MANAGER"].includes(user?.role) && (
 					<ItemUpdateButton

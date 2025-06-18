@@ -11,6 +11,7 @@ function DishForm({ onClose, onAdd, products }) {
 		selectedProducts: [], // List of products with ID & name
 		quantities: {}, // Map: productId -> quantity
 	});
+	const [errors, setErrors] = useState({});
 
 	const handleAddProduct = (product) => {
 		setFormData((prev) => ({
@@ -54,19 +55,19 @@ function DishForm({ onClose, onAdd, products }) {
 			})),
 		};
 
-		console.log(dishData);
-
 		axiosInstance
 			.post("http://localhost:8080/api/inventory/dishes", dishData)
 			.then((response) => {
 				const createdDish = response.data;
-				console.log(response.data);
 				onAdd(createdDish);
+				onClose();
 			})
 			.catch((error) => {
+				if (error.response && error.response.status === 400) {
+					setErrors(error.response.data);
+				}
 				console.error("failed to create the dish " + error);
 			});
-		onClose();
 	};
 
 	return (
@@ -81,6 +82,7 @@ function DishForm({ onClose, onAdd, products }) {
 					setFormData({ ...formData, name: e.target.value })
 				}
 			/>
+			{errors.name && <p className="errorMessage">{errors.name}</p>}
 
 			<label className="dishFormField">Search and add products</label>
 			<ProductDropdownSearch

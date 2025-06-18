@@ -2,6 +2,7 @@ import axiosInstance from "../../api/AxiosInstance";
 import { useState, useEffect } from "react";
 function VendorForm({ onAdd, onClose }) {
 	const [formVendor, setFormVendor] = useState("");
+	const [errors, setErrors] = useState({});
 
 	const handleChange = (event) => {
 		setFormVendor(event.target.value);
@@ -20,6 +21,9 @@ function VendorForm({ onAdd, onClose }) {
 				onClose();
 			})
 			.catch((error) => {
+				if(error.response && error.response.status === 400){
+					setErrors(error.response.data);
+				}
 				console.error("failed to create a category " + error);
 			});
 	};
@@ -36,6 +40,8 @@ function VendorForm({ onAdd, onClose }) {
 					className="formInput"
 					placeholder="Company LLC..."
 				/>
+				{errors.name && <p className="errorMessage">{errors.name}</p>}
+
 				<button className="submitBtn" onClick={handleSubmit}>
 					Add Vendor
 				</button>

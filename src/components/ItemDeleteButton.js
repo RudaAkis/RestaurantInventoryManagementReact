@@ -38,7 +38,7 @@ function ItemDeleteButton({ idToDelete, onActionComplete, url }) {
 				<ConfirmModal
 					title={"Delete Product"}
 					message={
-						"Are you sure you want to delete the item? Removing this product will also remove it from all dishes that currently include it. This action cannot be undone."
+						"Removing this item will also remove it from any associated items. This action cannot be undone. Are you sure you want to delete the item?"
 					}
 					onConfirm={handleConfirm}
 					onCancel={() => setShowModal(false)}
