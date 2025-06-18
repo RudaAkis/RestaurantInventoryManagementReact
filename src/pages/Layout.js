@@ -1,10 +1,11 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, NavLink, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../App.css";
 import "./PagesCSS/Layout.css";
 import LoginRegisterButton from "../components/Login/LoginRegisterButton";
 import "../components/Login/LoginButton.css";
 import { getUserFromToken, logout } from "../utils/authUtils";
+import logoutIcon from "../images/logoutIcon.png";
 
 const Layout = () => {
 	const [username, setUsername] = useState("");
@@ -24,30 +25,75 @@ const Layout = () => {
 
 				<ul>
 					<li>
-						<Link to="/app/dashboard">Dashboard</Link>
+						<NavLink 
+							to="/app/dashboard" 
+							className={({ isActive }) => isActive ? 'active-link' : ''}
+						>
+							Dashboard
+						</NavLink>
 					</li>
 					<li>
-						<Link to="/app/products">Products</Link>
+						<NavLink 
+							to="/app/products" 
+							className={({ isActive }) => isActive ? 'active-link' : ''}
+						>
+							Products
+						</NavLink>
 					</li>
 					<li>
-						<Link to="/app/dishes">Dishes</Link>
+						<NavLink 
+							to="/app/dishes" 
+							className={({ isActive }) => isActive ? 'active-link' : ''}
+						>
+							Dishes
+						</NavLink>
 					</li>
 					<li>
-						<Link to="/app/units">Units</Link>
+						<NavLink 
+							to="/app/units" 
+							className={({ isActive }) => isActive ? 'active-link' : ''}
+						>
+							Units
+						</NavLink>
 					</li>
 					<li>
-						<Link to="/app/categories">Categories</Link>
+						<NavLink 
+							to="/app/categories" 
+							className={({ isActive }) => isActive ? 'active-link' : ''}
+						>
+							Categories
+						</NavLink>
 					</li>
 					<li>
-						<Link to="/app/vendors">Vendors</Link>
+						<NavLink 
+							to="/app/vendors" 
+							className={({ isActive }) => isActive ? 'active-link' : ''}
+						>
+							Vendors
+						</NavLink>
 					</li>
 					{user?.role === "ADMIN" && (
 						<li>
-							<Link to="/app/users">Users</Link>
+							<NavLink  
+								to="/app/users"
+								className={({ isActive }) => isActive ? 'active-link' : ''}
+							>
+								Users	
+							</NavLink>
 						</li>
 					)}
 					{username && (
-						<li className="usernameText">| Welcome, {username}</li>
+						<>
+							<li className="usernameText">| Welcome, {username}</li>
+							<button 
+								className="logoutBtn" 
+								onClick={logout}> 
+								<img 
+									className="logoutIconImage" 
+									src={logoutIcon} 
+									alt="-"/> 
+							</button>
+						</>
 					)}
 				</ul>
 			</nav>

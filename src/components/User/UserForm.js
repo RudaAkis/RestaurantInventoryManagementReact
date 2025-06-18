@@ -55,72 +55,73 @@ function UserForm({ onClose, onAdd }) {
 	};
 
 	return (
-		<form>
-			<label className="userFormLabel">Firstname</label>
+		<form className="form">
+			<label className="formLabel">Firstname</label>
 			<input
 				name="firstname"
 				value={userFormData.firstname}
 				onChange={handleChange}
 				type="text"
-				className="userFormInput"
+				className="formInput"
 			/>
 			{errors.firstname && <p className="errorMessage">{errors.firstname}</p>}
 
-			<label className="userFormLabel">Lastname</label>
+			<label className="formLabel">Lastname</label>
 			<input
 				name="lastname"
 				value={userFormData.lastname}
 				onChange={handleChange}
 				type="text"
-				className="userFormInput"
+				className="formInput"
 			/>
 			{errors.lastname && <p className="errorMessage">{errors.lastname}</p>}
 
-			<label className="userFormLabel">Username</label>
+			<label className="formLabel">Username</label>
 			<input
 				name="username"
 				value={userFormData.username}
 				onChange={handleChange}
 				type="text"
-				className="userFormInput"
+				className="formInput"
 			/>
 			{errors.username && <p className="errorMessage">{errors.username}</p>}
 
-			<label className="userFormLabel">E-mail</label>
+			<label className="formLabel">E-mail</label>
 			<input
 				name="email"
 				value={userFormData.email}
 				onChange={handleChange}
 				type="text"
-				className="userFormInput"
+				className="formInput"
 			/>
 			{errors.email && <p className="errorMessage">{errors.email}</p>}
 
-			<label className="userFormLabel">Password</label>
+			<label className="formLabel">Password</label>
 			<input
 				name="firstPassword"
 				value={userFormData.password}
 				onChange={handleChange}
 				type="password"
-				className="userFormInput"
+				className="formInput"
 			/>
 			{errors.firstPassword && <p className="errorMessage">{errors.firstPassword}</p>}
 
-			<label className="userFormLabel">Repeat Password</label>
+			<label className="formLabel">Repeat Password</label>
 			<input
 				name="repeatPassword"
 				value={userFormData.repassword}
 				onChange={handleChange}
 				type="password"
-				className="userFormInput"
+				className="formInput"
 			/>
 			{errors.repeatPassword && <p className="errorMessage">{errors.repeatPassword}</p>}
 
+			<label className="formLabel">Select Role</label>
 			<select
 				name="role"
 				value={userFormData.role}
 				onChange={handleChange}
-				className="userFormInput"
+				className="formInput"
 			>
 				<option value={""}>Select Role:</option>
 				<option value={"USER"}>User</option>
@@ -128,7 +129,7 @@ function UserForm({ onClose, onAdd }) {
 				<option value={"ADMIN"}>Admin</option>
 			</select>
 
-			<button type="submit" onClick={handleSubmit}>
+			<button className="submitBtn"  type="submit" onClick={handleSubmit}>
 				Add user
 			</button>
 		</form>

@@ -81,7 +81,6 @@ function ProductUpdateForm({ productToUpdate, onUpdate }) {
 			...prev, //Spread operator to reassign the same values to everything else in the form
 			[name]: value,
 		}));
-		console.log("Changed field:", name, "New value:", value);
 	};
 
 	const handleSubmit = (event) => {

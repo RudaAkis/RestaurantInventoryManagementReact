@@ -80,6 +80,12 @@
 	box-shadow: 4px 4px #99bf0fd5;
 }
 
+.expired{
+	border: 3px solid #8b0000; /* Darker red */
+    box-shadow: 0 0 10px 4px #8b0000; /* Intense glow effect */
+    background-color: #ffe5e5; /* Optional: light red background to signal danger */
+}
+
 .lowStock{
 	background-color: rgb(187, 139, 139);
 }

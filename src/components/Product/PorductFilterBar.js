@@ -32,6 +32,15 @@ function ProductFilterBar({ onFilter, onReset }) {
 			});
 	}, []);
 
+	const resetFilters = () => {
+		onReset();
+		setCategoryId("");
+		setVendorId("");
+		setDaysBeforeExpiry("");
+		setSort("");
+		setOrder("asc");
+	}
+
 	// Call this when the "Filter" button is clicked
 	const handleApplyFilter = () => {
 		const params = {};
@@ -96,7 +105,7 @@ function ProductFilterBar({ onFilter, onReset }) {
 			</select>
 
 			<button className="filterOption, filterButton" onClick={handleApplyFilter}>Apply</button>
-			<button className="filterOption, filterButton" onClick={onReset}>Reset Filters</button>
+			<button className="filterOption, filterButton" onClick={resetFilters}>Reset Filters</button>
 		</div>
 	);
 }

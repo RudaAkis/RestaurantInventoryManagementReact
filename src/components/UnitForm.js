@@ -27,7 +27,7 @@ function UnitForm({ onClose, onAdd }) {
 
 	return (
 		<>
-			<form>
+			<form className="form">
 				<label className="formLabel">Unit of measure</label>
 				<input
 					type="text"

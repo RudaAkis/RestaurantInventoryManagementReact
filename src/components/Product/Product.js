@@ -8,16 +8,19 @@ import ProductRefillButton from "./ProductRefillButton";
 import axiosInstance from "../../api/AxiosInstance";
 
 function Product({ product, onDelete, onUpdate }) {
+
 	//The imported class is used instead of the default time in milliseconds for readability
 	const daysTillExpire = (expiryDate) => {
 		return differenceInCalendarDays(new Date(expiryDate), new Date());
 	};
+
 	const isLowStock = product.quantity <= product.startQuantity - ((product.startQuantity / 4) * 3);//Checks if current quantity is at 25% of startQuantity
 
 	const user = getUserFromToken();
 
 	const getExpiryClass = (expiryDate) => {
 		const daysLeft = daysTillExpire(expiryDate);
+		if (daysLeft < 0 ) return "expired";
 		if (daysLeft <= 1) return "expiry-danger";
 		if (daysLeft <= 3) return "expiry-warning";
 		return "expiry-safe";
@@ -26,8 +29,7 @@ function Product({ product, onDelete, onUpdate }) {
 	const pricePerUnit = (product.price / product.quantity).toFixed(2) +
 							"/" + product.unitOfMeasure;
 
-	const handleProductRefill = (refillAmount) => {
-		const payload = {refillQuantity: refillAmount};
+	const handleProductRefill = (payload) => {
 		axiosInstance.post(`http://localhost:8080/api/inventory/products/${product.productId}/refill`, payload)
 		.then((response) => {
 			const updatedProduct = response.data;

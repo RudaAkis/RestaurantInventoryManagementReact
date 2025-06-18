@@ -34,7 +34,7 @@ function UnitUpdateForm({ unitToUpdate, onUpdate }) {
 	};
 
 	return (
-		<form>
+		<form className="form">
 			<label className="formLabel">Unit of measure</label>
 			<input
 				type="text"

@@ -52,3 +52,33 @@ h1 {
 	font-size: 1.5em;
 	font-weight: 600;
 }
+
+
+.logoutIconImage{
+	max-width: 4em;
+	max-height: 4em;
+}
+
+.logoutBtn{
+	width: 7em;
+	max-height: 5em;
+	margin: 1em 0em;
+	background-color: #d9987300;
+	border: none;
+	border-radius: 2em;
+	padding: 0;
+}
+
+.logoutBtn:hover{
+	cursor: pointer;
+	border: 0.1em solid black;
+}
+
+.logoutBtn:active{
+	cursor: pointer;
+	border: 0.2em solid black;
+}
+
+.active-link{
+	text-decoration: underline;
+}

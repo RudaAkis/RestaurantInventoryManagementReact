@@ -23,5 +23,5 @@ export const getUserFromToken = () => {
 
 export const logout = () => {
 	localStorage.removeItem("jwt");
-	window.location.href = "/login"; // or use `navigate("/login")` from react-router
+	window.location.href = "/"; // or use `navigate("/login")` from react-router
 };

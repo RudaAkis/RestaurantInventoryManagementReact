@@ -26,7 +26,7 @@ function VendorForm({ onAdd, onClose }) {
 
 	return (
 		<>
-			<form>
+			<form className="form">
 				<label className="formLabel">Vendor</label>
 				<input
 					type="text"

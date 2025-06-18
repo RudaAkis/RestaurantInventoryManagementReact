@@ -37,7 +37,7 @@ function CategoryUpdateForm({ categoryToUpdate, onUpdate }) {
 
 	return (
 		<>
-			<form>
+			<form className="form">
 				<label className="formLabel">Category</label>
 				<input
 					type="text"

@@ -26,7 +26,7 @@ function CategoryForm({ onAdd, onClose }) {
 
 	return (
 		<>
-			<form>
+			<form className="form">
 				<label className="formLabel">Category</label>
 				<input
 					type="text"
