@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import "../components/Unit.css";
-import Unit from "../components/Unit";
+import "../components/Unit/Unit.css";
+import Unit from "../components//Unit/Unit";
 import AddButton from "../components/AddButton";
 import Modal from "../components/Modal";
-import UnitForm from "../components/UnitForm";
+import UnitForm from "../components/Unit/UnitForm";
 import axiosInstance from "../api/AxiosInstance";
 import { getUserFromToken } from "../utils/authUtils";
 function UnitPage() {

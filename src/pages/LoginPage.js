@@ -24,7 +24,7 @@ function LoginPage() {
 				const jwt = response.data;
 				console.log("printing response data ", response.data);
 				localStorage.setItem("jwt", jwt.jwt);
-				navigate("/app/dashboard");
+				navigate("/app/products");
 			})
 			.catch((error) => {
 				if(error.response && error.response.status === 400){

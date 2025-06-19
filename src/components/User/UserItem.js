@@ -2,7 +2,7 @@ import { getUserFromToken } from "../../utils/authUtils";
 import ItemUpdateButton from "../ItemUpdateButton";
 import ItemDeleteButton from "../ItemDeleteButton";
 import UserUpdateForm from "./UserUpdateForm";
-import "../Unit.css";
+import "../Unit/Unit.css";
 import "./User.css";
 
 function UserItem({ userItem, onUpdate, onDelete }) {

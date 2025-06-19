@@ -1,6 +1,6 @@
 import ItemUpdateButton from "../ItemUpdateButton";
 import ItemDeleteButton from "../ItemDeleteButton";
-import "../Unit.css";
+import '../Unit/Unit.css';
 import VendorUpdateForm from "./VendorUpdateForm";
 import { getUserFromToken } from "../../utils/authUtils";
 function Vendor({ vendor, onDelete, onUpdate }) {

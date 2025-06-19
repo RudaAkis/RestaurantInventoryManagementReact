@@ -1,6 +1,6 @@
-import "./Product/Form.css";
+import "../Product/Form.css";
 import { useState } from "react";
-import axiosInstance from "../api/AxiosInstance";
+import axiosInstance from "../../api/AxiosInstance";
 
 function UnitForm({ onClose, onAdd }) {
 	const [formUnit, setFormUnit] = useState("");

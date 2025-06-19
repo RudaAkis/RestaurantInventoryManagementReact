@@ -1,6 +1,6 @@
-import { getUserFromToken } from "../utils/authUtils";
-import ItemDeleteButton from "./ItemDeleteButton";
-import ItemUpdateButton from "./ItemUpdateButton";
+import { getUserFromToken } from "../../utils/authUtils";
+import ItemDeleteButton from "../ItemDeleteButton";
+import ItemUpdateButton from "../ItemUpdateButton";
 import "./Unit.css";
 import UnitUpdateForm from "./UnitUpdateForm";
 function Unit({ unit, onDelete, onUpdate }) {

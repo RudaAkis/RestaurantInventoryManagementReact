@@ -1,4 +1,4 @@
-.productContainer {
+/* .productContainer {
 	width: 80%;
 	min-height: 4em;
 	margin: 0.5em auto;
@@ -7,12 +7,12 @@
 	justify-content: space-center;
 	border-radius: 0.2em;
 	outline: 0.2em solid #59382c;
-}
+} */
 .productContainer:hover {
 	background-color: #3f8c70c0;
 }
 
-.itemParagraph {
+/* .itemParagraph {
 	width: 8em;
 	padding: 0;
 	margin-left: 1em;
@@ -23,7 +23,7 @@
 	display: flex;
 	justify-content: left;
 	overflow: inherit;
-}
+} */
 
 .productButton {
 	margin: 1em 0;
@@ -81,9 +81,9 @@
 }
 
 .expired{
-	border: 3px solid #8b0000; /* Darker red */
-    box-shadow: 0 0 10px 4px #8b0000; /* Intense glow effect */
-    background-color: #ffe5e5; /* Optional: light red background to signal danger */
+	border: 3px solid #8b0000; 
+    box-shadow: 0 0 10px 4px #8b0000; 
+    background-color: #ffe5e5; 
 }
 
 .lowStock{
@@ -93,4 +93,32 @@
 
 .lowStock:hover{
 	background-color: rgb(187, 139, 139);
+}
+
+
+
+.productContainer {
+	width: 80%;
+	min-height: 4em;
+	margin: 0.5em auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	border-radius: 0.2em;
+	outline: 0.2em solid #59382c;
+}
+
+.itemParagraph {
+	flex: 1 1 0;
+	padding: 0;
+	margin-left: 1em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	font-weight: 600;
+	text-align: center;
+	display: flex;
+	justify-content: center; 
+	align-items: center;
+	overflow: hidden;
+	word-break: break-word;
 }

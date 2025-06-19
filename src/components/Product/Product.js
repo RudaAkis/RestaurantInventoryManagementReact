@@ -18,6 +18,7 @@ function Product({ product, onDelete, onUpdate }) {
 
 	const user = getUserFromToken();
 
+	//Sets the css class for expiration dates field
 	const getExpiryClass = (expiryDate) => {
 		const daysLeft = daysTillExpire(expiryDate);
 		if (daysLeft < 0 ) return "expired";
@@ -26,8 +27,8 @@ function Product({ product, onDelete, onUpdate }) {
 		return "expiry-safe";
 	};
 
-	const pricePerUnit = (product.price / product.quantity).toFixed(2) +
-							"/" + product.unitOfMeasure;
+	const pricePerUnit = (product.price / product.startQuantity).toFixed(3) +
+							"€/" + product.unitOfMeasure;
 
 	const handleProductRefill = (payload) => {
 		axiosInstance.post(`http://localhost:8080/api/inventory/products/${product.productId}/refill`, payload)
@@ -87,6 +88,7 @@ function Product({ product, onDelete, onUpdate }) {
 					<p>{product.vendor}</p>
 				</div>
 
+				{/* Conditional rendering based on roles for the editing and deleting of the product */}
 				{["ADMIN", "MANAGER"].includes(user?.role) && (
 					<ProductRefillButton 
 						refillProduct={handleProductRefill} 

@@ -24,14 +24,14 @@ const Layout = () => {
 				<h1 className="pro">PRO Manager</h1>
 
 				<ul>
-					<li>
+					{/* <li>
 						<NavLink 
 							to="/app/dashboard" 
 							className={({ isActive }) => isActive ? 'active-link' : ''}
 						>
 							Dashboard
 						</NavLink>
-					</li>
+					</li> */}
 					<li>
 						<NavLink 
 							to="/app/products" 

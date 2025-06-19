@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import AxiosInstance from "../api/AxiosInstance.js";
 import { getUserFromToken } from "../utils/authUtils.js";
 import ProductFilterBar from "../components/Product/PorductFilterBar.js";
+import ProductHeader from "../components/Product/ProductHeader.js";
 
 function ProductPage() {
 	const [showModal, setShowModal] = useState(false);
@@ -91,6 +92,7 @@ function ProductPage() {
 				placeholder="Search products..."
 			/>
 
+			<ProductHeader/>
 			{filteredProducts.length === 0 ? (
 				<p>No results found.</p>
 			) : (

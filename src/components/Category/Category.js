@@ -1,6 +1,6 @@
 import ItemUpdateButton from "../ItemUpdateButton";
 import ItemDeleteButton from "../ItemDeleteButton";
-import "../Unit.css";
+import "../Unit/Unit.css";
 import CategoryUpdateForm from "./CategoryUpdateForm";
 import { getUserFromToken } from "../../utils/authUtils";
 function Category({ category, onDelete, onUpdate }) {

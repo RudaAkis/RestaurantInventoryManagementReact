@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Modal from "../Modal";
 import ProdcutRefillForm from "./ProductRefillForm";
+import addIcon from '../../images/addIcon.png';
 
 function ProductRefillButton({refillProduct}) {
     const [showModal, setShowModal] = useState(false);
@@ -11,7 +12,7 @@ function ProductRefillButton({refillProduct}) {
 
     return (
         <>
-            <button onClick={handleClick}>Refill</button>
+            <button className="productButton" onClick={handleClick}> <img className="iconImage" src={addIcon} alt="-"/> </button>
 
             {showModal && (
                 <Modal 

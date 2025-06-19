@@ -50,7 +50,7 @@ function ProductForm({ onClose, onAdd }) {
 
 	const handleChange = (event) => {
 		//Assign the name and the value from the input to the variables
-		const { name, value } = event.target;
+		const { name, value } = event.target;//Deconstruct the target to field name and the value
 		//Set the form data where the name equals object property name and the value is the value from the input
 		setFormData((prev) => ({
 			...prev, //Spread operator to reassign the same values to everything else in the form
